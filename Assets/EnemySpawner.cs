@@ -8,14 +8,15 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] List<Enemy> enemies;
 
+    private float countdown = 3f;
     public float spawnDelay = 5f;
 
-    private float countdown = 3f;
 
     private void Update()
     {
         Spawner();
     }
+
 
     private void Spawner()
     {
@@ -40,13 +41,12 @@ public class EnemySpawner : MonoBehaviour
         foreach (var enemy in enemies)
         {
             int randomSpawnPoint = GameManager.Instance.RandomNumberGenerate(0, spawnPoints.Count);
-            int randomVerticalPosition = GameManager.Instance.RandomNumberGenerate(0, 8);
 
-            Vector3 verticalPosition = new(0, randomVerticalPosition, 0);
+            Debug.Log(spawnPoints.Count);
+            Instantiate(enemy.prefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
 
-            GameObject enemyPrefab = Instantiate(enemy.prefab, spawnPoints[randomSpawnPoint].position + verticalPosition, Quaternion.identity);
+            SpawnPoints.freeSpawnPoints.Add(spawnPoints[randomSpawnPoint]);
             spawnPoints.Remove(spawnPoints[randomSpawnPoint]);
-
             countdown = spawnDelay;
         }
     }

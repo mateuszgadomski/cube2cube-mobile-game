@@ -34,7 +34,7 @@ public class ButtonManager : MonoBehaviour
             {
                 Cube cube = collider.GetComponent<Cube>();
 
-                    cube.Damage();
+                    cube.Dead();
             }
         }
           
