@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1692030534983140391}
   - component: {fileID: 1692030534983140388}
   - component: {fileID: 1692030534983140387}
-  - component: {fileID: 1692030534983140397}
+  - component: {fileID: 3679049957398685502}
   - component: {fileID: 1692030534983140386}
   m_Layer: 0
   m_Name: EnemyCube
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1692030534983140397
+--- !u!114 &3679049957398685502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,13 +125,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1692030534983140389}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 746d3679dd1e39c4bac6e065872a63a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a849304b118b4a7caabdb8cc10bdf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  time: 0
-  attackDelay: 1
   cubeSpeed: 1
+  playerAttackDamage: 25
+  playerAttackDelay: 1
+  countdown: 0
 --- !u!114 &1692030534983140386
 MonoBehaviour:
   m_ObjectHideFlags: 0

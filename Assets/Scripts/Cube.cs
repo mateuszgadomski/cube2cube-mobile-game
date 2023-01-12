@@ -15,7 +15,7 @@ public class Cube : MonoBehaviour
     private Vector3 startPos;
     private Transform spawnPos;
 
-    private void Awake()
+    private void Start()
     {
         cubeSpawnCheck();
     }
@@ -33,7 +33,10 @@ public class Cube : MonoBehaviour
         {
             if (startPos == spawnPoint.position)
             {
+                Debug.Log("SPAWNSAVE");
                 spawnPos = spawnPoint;
+                //SpawnPoints.spawnPoints.Remove(spawnPoint);
+                //SpawnPoints.spawnPoints.TrimExcess();
             }
         }
     }
