@@ -40,12 +40,10 @@ public class EnemySpawner : MonoBehaviour
         foreach (var enemy in enemies)
         {
             int randomSpawnPoint = GameManager.Instance.RandomNumberGenerate(0, spawnPoints.Count);
-            int randomVerticalPosition = GameManager.Instance.RandomNumberGenerate(0, 8);
 
-            Vector3 verticalPosition = new(0, randomVerticalPosition, 0);
+            GameObject enemyPrefab = Instantiate(enemy.prefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
 
-            GameObject enemyPrefab = Instantiate(enemy.prefab, spawnPoints[randomSpawnPoint].position + verticalPosition, Quaternion.identity);
-            //spawnPoints.Remove(spawnPoints[randomSpawnPoint]);
+            spawnPoints.Remove(spawnPoints[randomSpawnPoint]);
 
             countdown = spawnDelay;
         }

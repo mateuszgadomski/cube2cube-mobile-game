@@ -13,11 +13,11 @@ public class Cube : MonoBehaviour
     [HideInInspector] public float countdown = 0f;
 
     private Vector3 startPos;
-    private Transform spawnPos;
+    public Transform spawnPos;
 
-    private void Start()
+    private void Awake()
     {
-        cubeSpawnCheck();
+        CubeSpawnCheck();
     }
 
     private void Update()
@@ -25,7 +25,7 @@ public class Cube : MonoBehaviour
         Destroy();
     }
 
-    public void cubeSpawnCheck()
+    public void CubeSpawnCheck()
     {
         startPos = transform.position;
 
@@ -33,10 +33,10 @@ public class Cube : MonoBehaviour
         {
             if (startPos == spawnPoint.position)
             {
-                Debug.Log("SPAWNSAVE");
+                int randomVerticalPosition = GameManager.Instance.RandomNumberGenerate(0, 8);
+                Vector3 verticalPosition = new(0, randomVerticalPosition, 0);
+                spawnPoint.position += verticalPosition;
                 spawnPos = spawnPoint;
-                //SpawnPoints.spawnPoints.Remove(spawnPoint);
-                //SpawnPoints.spawnPoints.TrimExcess();
             }
         }
     }
