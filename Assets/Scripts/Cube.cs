@@ -33,9 +33,6 @@ public class Cube : MonoBehaviour
         {
             if (startPos == spawnPoint.position)
             {
-                int randomVerticalPosition = GameManager.Instance.RandomNumberGenerate(0, 8);
-                Vector3 verticalPosition = new(0, randomVerticalPosition, 0);
-                spawnPoint.position += verticalPosition;
                 spawnPos = spawnPoint;
             }
         }
