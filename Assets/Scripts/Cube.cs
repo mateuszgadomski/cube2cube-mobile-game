@@ -30,7 +30,6 @@ public class Cube : MonoBehaviour
     private void Update()
     {
         Destroy();
-
     }
 
     public void CubeSpawnCheck()
@@ -47,19 +46,11 @@ public class Cube : MonoBehaviour
     }
     public void Damage()
     {
-        if (countdown <= 0f)
-        {
-            health -= playerAttackDamage;
+        health -= playerAttackDamage;
+        playerStats.addPoints(5f);
+        Handheld.Vibrate();
 
-            playerStats.addPoints(5f);
-
-            Handheld.Vibrate();
-
-            countdown = playerAttackDelay;
-        }
-
-        countdown -= Time.deltaTime;
-        countdown = Mathf.Clamp(countdown, 0f, countdown);
+        countdown = playerAttackDelay;
     }
 
     private void Destroy()
@@ -74,7 +65,6 @@ public class Cube : MonoBehaviour
     public virtual void CubeAttackEffect()
     {
         playerStats.playerHealth -= cubeAttackDamage;
-        Debug.Log(playerStats.playerHealth);
     }
 
 }

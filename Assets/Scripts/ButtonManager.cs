@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
+    GameManager gameManager;
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
     private void Update()
     {
         MultiTouch();
@@ -26,7 +31,7 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
-    private void DestroyCubes(Touch touch,GameObject collider, string enemyTag)
+    private void DestroyCubes(Touch touch, GameObject collider, string enemyTag)
     {
         if (collider.CompareTag(enemyTag))
         {
@@ -34,9 +39,9 @@ public class ButtonManager : MonoBehaviour
             {
                 Cube cube = collider.GetComponent<Cube>();
 
-                    cube.Damage();
+                gameManager.Timer(ref cube.playerAttackDelay, cube.Damage);
             }
         }
-          
+
     }
 }

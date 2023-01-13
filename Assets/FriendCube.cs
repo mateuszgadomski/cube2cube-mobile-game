@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class FriendCube : MonoBehaviour
 {
-  public float health = 100f;
+    public float health = 100f;
     public float rangeAttack = 5f;
 
     public float attackDelay = 5f;
-
     private float countdown = 3f;
+
+    GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     private void Update()
     {
-        Attack();
+        gameManager.Timer(ref countdown, Attack);
     }
 
     public virtual void Attack()
     {
-     
-
-    if (countdown <= 0f)
-        {
             Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack);
 
             foreach (var enemy in enemies)
@@ -31,10 +33,6 @@ public class FriendCube : MonoBehaviour
                     Debug.Log(enemy);
                 }
             }
-        }
-
-countdown -= Time.deltaTime;
-countdown = Mathf.Clamp(countdown, 0f, countdown);
     }
 
     private void OnDrawGizmos()

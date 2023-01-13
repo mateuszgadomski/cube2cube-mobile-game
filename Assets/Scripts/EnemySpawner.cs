@@ -8,26 +8,26 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] List<Enemy> enemies;
 
+    GameManager gameManager;
+
     public float spawnDelay = 5f;
 
     private float countdown = 3f;
 
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
+
     private void Update()
     {
-        Spawner();
-        Debug.Log(enemies.Count);
+        gameManager.Timer(ref countdown, Spawner);
     }
 
     private void Spawner()
     {
-        if (countdown <= 0f)
-        {
             int cubePrefabNumber = GameManager.Instance.RandomNumberGenerate(1, enemies.Count + 1);
             SpawnEnemy(cubePrefabNumber);
-        }
-
-        countdown -= Time.deltaTime;
-        countdown = Mathf.Clamp(countdown, 0f, countdown);
     }
     private void SpawnEnemy(int id)
     {

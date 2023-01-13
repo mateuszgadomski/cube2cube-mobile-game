@@ -20,5 +20,17 @@ public class GameManager : MonoBehaviour
         int randomNumber = Random.Range(minValue, maxValue);
         return randomNumber;
     }
+
+    public delegate void TestDelegate();
+
+    public void Timer(ref float countdown, TestDelegate method)
+    {
+        if (countdown <= 0f)
+        {
+            method();
+        }
+        countdown -= Time.deltaTime;
+        countdown = Mathf.Clamp(countdown, 0f, countdown);
+    }
 }
 
