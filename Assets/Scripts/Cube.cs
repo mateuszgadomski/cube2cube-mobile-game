@@ -13,6 +13,7 @@ public class Cube : MonoBehaviour
 
     [HideInInspector] public float countdown = 0f;
 
+    public GameObject coinPrefab;
     private Vector3 startPos;
     public Transform spawnPos;
     private PlayerStats playerStats;
@@ -58,6 +59,7 @@ public class Cube : MonoBehaviour
         if (health <= 0)
         {
             SpawnPoints.spawnPoints.Add(spawnPos);
+            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

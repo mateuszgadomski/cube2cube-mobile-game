@@ -6,7 +6,7 @@ public class FriendCube : MonoBehaviour
 {
     public float health = 100f;
     public float rangeAttack = 5f;
-
+    public float attackDamage = 5f;
     public float attackDelay = 5f;
     private float countdown = 3f;
 
@@ -19,20 +19,23 @@ public class FriendCube : MonoBehaviour
 
     private void Update()
     {
-        gameManager.Timer(ref countdown, Attack);
+        gameManager.Timer(ref countdown, CubeEvent);
     }
 
-    public virtual void Attack()
+    public virtual void CubeEvent()
     {
-            Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack);
+        Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack);
 
-            foreach (var enemy in enemies)
+        foreach (var enemy in enemies)
+        {
+            if (enemy.gameObject.CompareTag("Enemy"))
             {
-                if (enemy.gameObject.CompareTag("Enemy"))
-                {
-                    Debug.Log(enemy);
-                }
+                Cube cube = enemy.GetComponent<Cube>();
+                cube.health -= attackDamage;
+
+                countdown = attackDelay;
             }
+        }
     }
 
     private void OnDrawGizmos()

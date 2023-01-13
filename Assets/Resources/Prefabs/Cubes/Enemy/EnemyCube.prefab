@@ -146,4 +146,6 @@ MonoBehaviour:
   cubeAttackDamage: 2
   playerAttackDelay: 3
   countdown: 0
+  coinPrefab: {fileID: 3336979636389385545, guid: a2b83eac5d3d3ca46a9c201b236ed554,
+    type: 3}
   spawnPos: {fileID: 0}

@@ -11,13 +11,29 @@ public class ButtonManager : MonoBehaviour
     }
     private void Update()
     {
+        SingleTouch();
         MultiTouch();
+    }
+
+    private void SingleTouch()
+    {
+        if (Input.touchCount >0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                AddCoin(touch, hit.collider.gameObject, "Coin");
+            }
+        }
     }
 
     private void MultiTouch()
     {
         Touch[] playerTouches = Input.touches;
-
 
         for (int i = 0; i < Input.touchCount; i++)
         {
@@ -42,6 +58,17 @@ public class ButtonManager : MonoBehaviour
                 gameManager.Timer(ref cube.playerAttackDelay, cube.Damage);
             }
         }
+    }
 
+    private void AddCoin(Touch touch, GameObject collider, string coinTag)
+    {
+        if (collider.CompareTag(coinTag))
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                Coin coin = collider.GetComponent<Coin>();
+                coin.AddCoin();
+            }
+        }
     }
 }
