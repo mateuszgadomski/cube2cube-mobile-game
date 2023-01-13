@@ -15,19 +15,21 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         Spawner();
+        Debug.Log(enemies.Count);
     }
 
     private void Spawner()
     {
         if (countdown <= 0f)
         {
-            SpawnEnemy();
+            int cubePrefabNumber = GameManager.Instance.RandomNumberGenerate(1, enemies.Count + 1);
+            SpawnEnemy(cubePrefabNumber);
         }
 
         countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, countdown);
     }
-    private void SpawnEnemy()
+    private void SpawnEnemy(int id)
     {
         var spawnPoints = SpawnPoints.spawnPoints;
 
@@ -39,13 +41,18 @@ public class EnemySpawner : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
-            int randomSpawnPoint = GameManager.Instance.RandomNumberGenerate(0, spawnPoints.Count);
+            Debug.Log(id);
+            if (enemy.id == id)
+            {
+                int randomSpawnPoint = GameManager.Instance.RandomNumberGenerate(0, spawnPoints.Count);
 
-            GameObject enemyPrefab = Instantiate(enemy.prefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+                GameObject enemyPrefab = Instantiate(enemy.prefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
 
-            spawnPoints.Remove(spawnPoints[randomSpawnPoint]);
+                spawnPoints.Remove(spawnPoints[randomSpawnPoint]);
 
-            countdown = spawnDelay;
+                countdown = spawnDelay;
+            }
+          
         }
     }
 }
