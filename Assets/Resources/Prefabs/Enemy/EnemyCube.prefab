@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 1692030534983140391}
   - component: {fileID: 1692030534983140388}
   - component: {fileID: 1692030534983140387}
-  - component: {fileID: 3679049957398685502}
   - component: {fileID: 1692030534983140386}
+  - component: {fileID: -940717287871241413}
+  - component: {fileID: 3933134355565649608}
   m_Layer: 0
   m_Name: EnemyCube
   m_TagString: Enemy
@@ -116,7 +117,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3679049957398685502
+--- !u!114 &1692030534983140386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692030534983140389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b50bb25e459bd44ac222d18e29ef69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-940717287871241413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692030534983140389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402f2467f9874e24f80a1255f7777472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  cubeSpeed: 1
+  playerAttackDamage: 25
+  cubeAttackDamage: 2
+  playerAttackDelay: 1
+  countdown: 0
+  spawnPos: {fileID: 0}
+--- !u!114 &3933134355565649608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,18 +163,7 @@ MonoBehaviour:
   health: 100
   cubeSpeed: 1
   playerAttackDamage: 25
+  cubeAttackDamage: 2
   playerAttackDelay: 1
   countdown: 0
   spawnPos: {fileID: 0}
---- !u!114 &1692030534983140386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692030534983140389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01b50bb25e459bd44ac222d18e29ef69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

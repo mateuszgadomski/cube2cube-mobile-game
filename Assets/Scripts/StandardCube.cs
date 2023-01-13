@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StandardCube : Cube
 {
-    public override void ObstacleEvent()
+    public override void CubeAttackEffect()
     {
-        base.ObstacleEvent();
+        base.CubeAttackEffect();
         Debug.Log("Standard");
     }
 }

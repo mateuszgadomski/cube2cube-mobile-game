@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 2054674039}
   - component: {fileID: 2054674040}
   - component: {fileID: 2054674041}
+  - component: {fileID: 2054674042}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1185,11 +1186,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa22497646154ae09aa22e3940f333b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: 100
+  playerPoints: 0
+--- !u!114 &2054674042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054674035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd18ea5f5ac022949a76e49f08603364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerPointsText: {fileID: 523837030}
   playerPointsBar: {fileID: 884236598}
   mainCamera: {fileID: 963194227}
   defaultCubeMaterial: {fileID: 2100000, guid: b19deb91fd9395f4c9a0cb8da9353484, type: 2}
-  playerPoints: 0
+  firstLevelScore: 0
+  secondLevelScore: 100
+  thirdLevelScore: 1000
+  fourthLevelScore: 10000
 --- !u!1 &2102679065
 GameObject:
   m_ObjectHideFlags: 0

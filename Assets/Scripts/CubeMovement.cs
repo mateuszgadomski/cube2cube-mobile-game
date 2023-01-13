@@ -24,6 +24,8 @@ public class CubeMovement : MonoBehaviour
     {
         if (other.gameObject)
         {
+            cube.CubeAttackEffect();
+
             if (direction != Vector3.down)
             {
                 direction = Vector3.down;
