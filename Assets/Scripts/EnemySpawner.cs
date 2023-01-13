@@ -41,7 +41,6 @@ public class EnemySpawner : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
-            Debug.Log(id);
             if (enemy.id == id)
             {
                 int randomSpawnPoint = GameManager.Instance.RandomNumberGenerate(0, spawnPoints.Count);
@@ -52,7 +51,6 @@ public class EnemySpawner : MonoBehaviour
 
                 countdown = spawnDelay;
             }
-          
         }
     }
 }

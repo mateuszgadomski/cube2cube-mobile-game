@@ -14,8 +14,7 @@ GameObject:
   - component: {fileID: 1711268731655569762}
   - component: {fileID: 1711268731655569765}
   - component: {fileID: 1711268731655569764}
-  - component: {fileID: 8229500981969495677}
-  - component: {fileID: 3914091852629318542}
+  - component: {fileID: -5937646055588159252}
   m_Layer: 0
   m_Name: EnemyFastCube
   m_TagString: Enemy
@@ -129,26 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b50bb25e459bd44ac222d18e29ef69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8229500981969495677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711268731655569763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 402f2467f9874e24f80a1255f7777472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  cubeSpeed: 1
-  playerAttackDamage: 25
-  cubeAttackDamage: 2
-  playerAttackDelay: 1
-  countdown: 0
-  spawnPos: {fileID: 0}
---- !u!114 &3914091852629318542
+--- !u!114 &-5937646055588159252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,8 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  cubeSpeed: 6
-  playerAttackDamage: 100
+  cubeSpeed: 1
+  playerAttackDamage: 25
   cubeAttackDamage: 2
   playerAttackDelay: 1
   countdown: 0
