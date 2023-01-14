@@ -19,21 +19,24 @@ public class FriendCube : MonoBehaviour
 
     private void Update()
     {
-        gameManager.Timer(ref countdown, CubeEvent);
+        CubeEvent();
     }
 
     public virtual void CubeEvent()
     {
-        Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack);
-
-        foreach (var enemy in enemies)
+        if (GameManager.Instance.DelayToAction(ref countdown))
         {
-            if (enemy.gameObject.CompareTag("Enemy"))
-            {
-                Cube cube = enemy.GetComponent<Cube>();
-                cube.health -= attackDamage;
+            Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack);
 
-                countdown = attackDelay;
+            foreach (var enemy in enemies)
+            {
+                if (enemy.gameObject.CompareTag("Enemy"))
+                {
+                    Cube cube = enemy.GetComponent<Cube>();
+                    cube.health -= attackDamage;
+
+                    countdown = attackDelay;
+                }
             }
         }
     }

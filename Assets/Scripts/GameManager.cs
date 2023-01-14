@@ -21,16 +21,16 @@ public class GameManager : MonoBehaviour
         return randomNumber;
     }
 
-    public delegate void TestDelegate();
-
-    public void Timer(ref float countdown, TestDelegate method)
+    public bool DelayToAction(ref float countdown)
     {
         if (countdown <= 0f)
         {
-            method();
+            return true;
         }
+
         countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, countdown);
+        return false;
     }
 }
 

@@ -15,8 +15,7 @@ public class Cube : MonoBehaviour
 
     public GameObject coinPrefab;
     private Vector3 startPos;
-    public Transform spawnPos;
-    private PlayerStats playerStats;
+    private Transform spawnPos;
 
     private void Awake()
     {
@@ -25,12 +24,37 @@ public class Cube : MonoBehaviour
 
     private void Start()
     {
-        playerStats = GameManager.Instance.gameObject.GetComponent<PlayerStats>();
+
+        ActionsManager.instance.OnGameObjectTouchedCallback += IsTouched;
+    }
+
+    private void OnDestroy()
+    {
+        ActionsManager.instance.OnGameObjectTouchedCallback -= IsTouched;
     }
 
     private void Update()
     {
         Destroy();
+    }
+
+    public void IsTouched(GameObject touchedObject, Touch touch, string enemyTag)
+    {
+        if (touchedObject != this.gameObject)
+        {
+            return;
+        }
+
+        if (touchedObject.CompareTag(enemyTag))
+        {
+            if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+            {
+                if (GameManager.Instance.DelayToAction(ref playerAttackDelay))
+                {
+                    Damage();
+                }
+            }
+        }
     }
 
     public void CubeSpawnCheck()
@@ -48,7 +72,7 @@ public class Cube : MonoBehaviour
     public void Damage()
     {
         health -= playerAttackDamage;
-        playerStats.addPoints(5f);
+        ActionsManager.instance.OnCollectPointsCallBack(5f);
         Handheld.Vibrate();
 
         countdown = playerAttackDelay;
@@ -66,7 +90,7 @@ public class Cube : MonoBehaviour
 
     public virtual void CubeAttackEffect()
     {
-        playerStats.playerHealth -= cubeAttackDamage;
+        //playerStats.playerHealth -= cubeAttackDamage;
     }
 
 }

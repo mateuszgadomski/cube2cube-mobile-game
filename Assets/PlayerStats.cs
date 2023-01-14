@@ -11,9 +11,26 @@ public class PlayerStats : MonoBehaviour
     public float playerPoints; //
     public float playerCoins;
 
-    public void addPoints(float addPointsValue)
+    private void Start()
+    {
+        ActionsManager.instance.OnCollectCoinCallBack += AddCoins;
+        ActionsManager.instance.OnCollectPointsCallBack += AddPoints;
+    }
+
+    private void OnDestroy()
+    {
+        ActionsManager.instance.OnCollectCoinCallBack += AddCoins;
+        ActionsManager.instance.OnCollectPointsCallBack += AddPoints;
+    }
+
+    public void AddPoints(float addPointsValue)
     {
         playerPoints += addPointsValue;
+    }
+
+    public void AddCoins(float addCoinsValue)
+    {
+        playerCoins += addCoinsValue;
     }
 
 

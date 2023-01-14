@@ -4,19 +4,34 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public float addCoin = 1f;
-
-    private PlayerStats playerStats;
+    public float addCoinValue = 1f;
 
     private void Start()
     {
-        playerStats = GameManager.Instance.GetComponent<PlayerStats>();
+        ActionsManager.instance.OnGameObjectTouchedCallback += IsTouched;
+    }
+
+    private void OnDestroy()
+    {
+        ActionsManager.instance.OnGameObjectTouchedCallback -= IsTouched;
     }
 
     public void AddCoin()
     {
-        playerStats.playerCoins += addCoin;
+        ActionsManager.instance.OnCollectCoinCallBack(addCoinValue);
         Destroy(gameObject);
     }
 
+    private void IsTouched(GameObject touchedObject, Touch touch, string coinTag)
+    {
+        if (touchedObject != this.gameObject)
+        {
+            return;
+        }
+
+        if (touch.phase == TouchPhase.Began && touchedObject.CompareTag(coinTag))
+        {
+            AddCoin();
+        }
+    }
 }

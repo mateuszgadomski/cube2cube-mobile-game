@@ -26,7 +26,7 @@ public class ButtonManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                AddCoin(touch, hit.collider.gameObject, "Coin");
+                ActionsManager.instance.OnGameObjectTouchedCallback(hit.collider.gameObject, touch, "Coin");
             }
         }
     }
@@ -42,32 +42,7 @@ public class ButtonManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                DestroyCubes(playerTouches[i], hit.collider.gameObject, "Enemy");
-            }
-        }
-    }
-
-    private void DestroyCubes(Touch touch, GameObject collider, string enemyTag)
-    {
-        if (collider.CompareTag(enemyTag))
-        {
-            if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
-            {
-                Cube cube = collider.GetComponent<Cube>();
-
-                gameManager.Timer(ref cube.playerAttackDelay, cube.Damage);
-            }
-        }
-    }
-
-    private void AddCoin(Touch touch, GameObject collider, string coinTag)
-    {
-        if (collider.CompareTag(coinTag))
-        {
-            if (touch.phase == TouchPhase.Began)
-            {
-                Coin coin = collider.GetComponent<Coin>();
-                coin.AddCoin();
+                ActionsManager.instance.OnGameObjectTouchedCallback(hit.collider.gameObject, playerTouches[i], "Enemy");
             }
         }
     }
