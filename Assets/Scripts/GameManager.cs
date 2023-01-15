@@ -15,16 +15,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        ActionsManager.instance.EnemyCube.OnCubeDamagedCallBack += VibratePhone;
-    }
-
-    private void OnDestroy()
-    {
-        ActionsManager.instance.EnemyCube.OnCubeDamagedCallBack -= VibratePhone;
-    }
-
     public int RandomNumberGenerate(int minValue, int maxValue)
     {
         int randomNumber = Random.Range(minValue, maxValue);
@@ -41,11 +31,6 @@ public class GameManager : MonoBehaviour
         countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, countdown);
         return false;
-    }
-
-    public void VibratePhone()
-    {
-        Handheld.Vibrate();
     }
 }
 

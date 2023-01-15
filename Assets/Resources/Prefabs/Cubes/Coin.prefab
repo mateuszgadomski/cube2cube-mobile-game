@@ -110,5 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06daf04852dad414eb18ce88db2ad7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addCoinMinValue: 1
-  addCoinMaxValue: 5
+  addCoin: 1

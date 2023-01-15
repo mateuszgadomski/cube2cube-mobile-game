@@ -10,6 +10,13 @@ public class FriendCube : MonoBehaviour
     public float attackDelay = 5f;
     private float countdown = 3f;
 
+    GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
+
     private void Update()
     {
         CubeEvent();

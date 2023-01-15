@@ -7,12 +7,9 @@ public class CubeMovement : MonoBehaviour
     Cube cube;
     Vector3 direction;
 
-    public float cubeAttackDamage = 2f;
-
     private void Start()
     {
         cube = GetComponent<Cube>();
-
         direction = Vector3.up;
     }
 
@@ -21,11 +18,13 @@ public class CubeMovement : MonoBehaviour
         CubeMove(direction, cube.cubeSpeed);
     }
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject)
         {
-            cube.DamageToPlayer();
+            cube.CubeAttackEffect();
 
             if (direction != Vector3.down)
             {
@@ -42,4 +41,5 @@ public class CubeMovement : MonoBehaviour
     {
         transform.Translate(direction * cubeSpeed * Time.deltaTime, Space.World);
     }
+
 }

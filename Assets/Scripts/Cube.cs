@@ -10,7 +10,6 @@ public class Cube : MonoBehaviour
     public float playerAttackDamage = 25f; // need to change
     public float cubeAttackDamage = 2f;
     public float playerAttackDelay = 1f;
-    public float pointsForDestruction = 5f;
 
     [HideInInspector] public float countdown = 0f;
 
@@ -18,19 +17,26 @@ public class Cube : MonoBehaviour
     private Vector3 startPos;
     private Transform spawnPos;
 
-    private void Awake() => CubeSpawnCheck();
+    private void Awake()
+    {
+        CubeSpawnCheck();
+    }
 
     private void Start()
     {
-        ActionsManager.instance.Player.OnGameObjectTouchedCallback += IsTouched;
+
+        ActionsManager.instance.OnGameObjectTouchedCallback += IsTouched;
     }
 
     private void OnDestroy()
     {
-        ActionsManager.instance.Player.OnGameObjectTouchedCallback -= IsTouched;
+        ActionsManager.instance.OnGameObjectTouchedCallback -= IsTouched;
     }
 
-    private void Update() => Destroy();
+    private void Update()
+    {
+        Destroy();
+    }
 
     public void IsTouched(GameObject touchedObject, Touch touch, string enemyTag)
     {
@@ -45,7 +51,7 @@ public class Cube : MonoBehaviour
             {
                 if (GameManager.Instance.DelayToAction(ref playerAttackDelay))
                 {
-                    DamageToCube();
+                    Damage();
                 }
             }
         }
@@ -63,17 +69,13 @@ public class Cube : MonoBehaviour
             }
         }
     }
-    public void DamageToCube()
+    public void Damage()
     {
         health -= playerAttackDamage;
-        ActionsManager.instance.Player.OnCollectPointsCallBack(pointsForDestruction);
-        ActionsManager.instance.EnemyCube.OnCubeDamagedCallBack();
-        countdown = playerAttackDelay;
-    }
+        ActionsManager.instance.OnCollectPointsCallBack(5f);
+        Handheld.Vibrate();
 
-    public void DamageToPlayer()
-    {
-        ActionsManager.instance.EnemyCube.OnCubeTakeDamageCallBack(cubeAttackDamage);
+        countdown = playerAttackDelay;
     }
 
     private void Destroy()
@@ -85,5 +87,10 @@ public class Cube : MonoBehaviour
             Destroy(gameObject);
         }
     }
-}
 
+    public virtual void CubeAttackEffect()
+    {
+        //playerStats.playerHealth -= cubeAttackDamage;
+    }
+
+}

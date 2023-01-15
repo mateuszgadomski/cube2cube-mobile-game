@@ -4,25 +4,21 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public int addCoinMinValue = 1;
-    public int addCoinMaxValue = 5;
+    public float addCoinValue = 1f;
 
     private void Start()
     {
-        ActionsManager.instance.Player.OnGameObjectTouchedCallback += IsTouched;
-
+        ActionsManager.instance.OnGameObjectTouchedCallback += IsTouched;
     }
 
     private void OnDestroy()
     {
-        ActionsManager.instance.Player.OnGameObjectTouchedCallback -= IsTouched;
+        ActionsManager.instance.OnGameObjectTouchedCallback -= IsTouched;
     }
 
     public void AddCoin()
     {
-        float addCoinValues = GameManager.Instance.RandomNumberGenerate(addCoinMinValue, addCoinMaxValue);
-        Debug.Log(addCoinValues);
-        ActionsManager.instance.Player.OnCollectCoinCallBack(addCoinValues);
+        ActionsManager.instance.OnCollectCoinCallBack(addCoinValue);
         Destroy(gameObject);
     }
 
