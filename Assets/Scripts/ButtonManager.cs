@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
-    GameManager gameManager;
-    private void Start()
-    {
-        gameManager = GameManager.Instance;
-    }
     private void Update()
     {
         SingleTouch();
@@ -26,7 +21,7 @@ public class ButtonManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                ActionsManager.instance.OnGameObjectTouchedCallback(hit.collider.gameObject, touch, "Coin");
+                ActionsManager.instance.Player.OnGameObjectTouchedCallback(hit.collider.gameObject, touch, "Coin");
             }
         }
     }
@@ -42,7 +37,7 @@ public class ButtonManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                ActionsManager.instance.OnGameObjectTouchedCallback(hit.collider.gameObject, playerTouches[i], "Enemy");
+                ActionsManager.instance.Player.OnGameObjectTouchedCallback(hit.collider.gameObject, playerTouches[i], "Enemy");
             }
         }
     }
