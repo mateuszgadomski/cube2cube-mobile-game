@@ -15,21 +15,18 @@ public class Enemy : MonoBehaviour
     public float countdown = 0f;
 
     public GameObject coinPrefab;
-    private Image countdownBar;
-    private Image healthBar;
+    private EnemyUI enemyUI;
     private Vector3 startPos;
     private Transform spawnPos;
 
     private void Awake()
     {
+        enemyUI = transform.GetChild(0).gameObject.GetComponent<EnemyUI>();
         SaveSpawnPosition();
     }
 
     private void Start()
     {
-        countdownBar = gameObject.transform.GetChild(0).gameObject.GetComponentsInChildren<Image>().ToList().FirstOrDefault(n => n.gameObject.name == "CountdownBar");
-        healthBar = gameObject.transform.GetChild(0).gameObject.GetComponentsInChildren<Image>().ToList().FirstOrDefault(n => n.gameObject.name == "HealthBar");
-
         EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
 
         countdown = playerAttackDelay;
@@ -51,15 +48,14 @@ public class Enemy : MonoBehaviour
         {
             if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
             {
-                countdownBar.fillAmount = countdown;
+
+                enemyUI.CountdownBarChange(countdown);
 
                 if (GameManager.Instance.DelayToAction(ref countdown))
                 {
                     TakeDamage(playerAttackDamage);
-                    Debug.Log(countdownBar.fillAmount);
                     GameManager.Instance.VibratePhone();
                     EventManager.PlayerEvents.CallOnCollectPoints(5f);
-
                     countdown = playerAttackDelay;
                 }
             }
@@ -81,7 +77,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        healthBar.fillAmount = health / 100f;
+        enemyUI.HealthBarChange(health);
         Destroy();
     }
 
