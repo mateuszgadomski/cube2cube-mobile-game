@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketCube : Cube
+public class RocketCube : Enemy
 {
 
 
-public override void CubeAttackEffect()
+public override void EnemyAttack()
     {
-        base.CubeAttackEffect();
+        base.EnemyAttack();
 
         Debug.Log("Rocket");
     }

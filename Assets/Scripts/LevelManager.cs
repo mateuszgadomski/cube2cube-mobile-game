@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     public Camera mainCamera;
     public Material defaultCubeMaterial;
 
-    PlayerStats playerStats;
+    private PlayerStats playerStats;
 
     private int level;
     public int firstLevelScore = 0;

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Cube : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public float health = 100;
-    public float cubeSpeed = 1f;
+    public float enemySpeed = 1f;
     public float playerAttackDamage = 25f; // need to change
-    public float cubeAttackDamage = 2f;
     public float playerAttackDelay = 1f;
+    public float enemyAttackDamage = 2f;
 
     [HideInInspector] public float countdown = 0f;
 
@@ -19,18 +19,18 @@ public class Cube : MonoBehaviour
 
     private void Awake()
     {
-        CubeSpawnCheck();
+        SaveSpawnPosition();
     }
 
     private void Start()
     {
 
-        ActionsManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
+        EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
     }
 
     private void OnDestroy()
     {
-        ActionsManager.PlayerEvents.OnGameObjectTouchedCallback -= IsTouched;
+        EventManager.PlayerEvents.OnGameObjectTouchedCallback -= IsTouched;
     }
 
     private void Update()
@@ -51,13 +51,16 @@ public class Cube : MonoBehaviour
             {
                 if (GameManager.Instance.DelayToAction(ref playerAttackDelay))
                 {
-                    Damage();
+                    TakeDamage(playerAttackDamage);
+                    EventManager.PlayerEvents.CallOnCollectPoints(5f);
+
+                    countdown = playerAttackDelay;
                 }
             }
         }
     }
 
-    public void CubeSpawnCheck()
+    public void SaveSpawnPosition()
     {
         startPos = transform.position;
 
@@ -69,13 +72,10 @@ public class Cube : MonoBehaviour
             }
         }
     }
-    public void Damage()
+    public void TakeDamage(float amount)
     {
-        health -= playerAttackDamage;
-        ActionsManager.instance.OnCollectPointsCallBack(5f);
-        Handheld.Vibrate();
-
-        countdown = playerAttackDelay;
+        health -= amount;
+        EventManager.TouchEvents.CallOnScreenTouched();
     }
 
     private void Destroy()
@@ -88,9 +88,9 @@ public class Cube : MonoBehaviour
         }
     }
 
-    public virtual void CubeAttackEffect()
+    public virtual void EnemyAttack()
     {
-        //playerStats.playerHealth -= cubeAttackDamage;
+        EventManager.PlayerEvents.CallOnPlayerDamaged(enemyAttackDamage);
     }
 
 }

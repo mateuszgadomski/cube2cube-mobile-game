@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<Enemy> enemies;
+    [SerializeField] List<EnemyCube> enemies;
 
     public float spawnDelay = 5f;
 
@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
 }
 
 [System.Serializable]
-public class Enemy
+public class EnemyCube
 {
     public static Enemy instance;
     public GameObject prefab;

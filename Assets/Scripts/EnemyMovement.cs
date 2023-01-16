@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
-    Cube cube;
+    Enemy enemy;
     Vector3 direction;
 
     private void Start()
     {
-        cube = GetComponent<Cube>();
+        enemy = GetComponent<Enemy>();
         direction = Vector3.up;
     }
 
     private void Update()
     {
-        CubeMove(direction, cube.cubeSpeed);
+        CubeMove(direction, enemy.enemySpeed);
     }
 
 
@@ -24,7 +24,7 @@ public class CubeMovement : MonoBehaviour
     {
         if (other.gameObject)
         {
-            cube.CubeAttackEffect();
+            enemy.EnemyAttack();
 
             if (direction != Vector3.down)
             {

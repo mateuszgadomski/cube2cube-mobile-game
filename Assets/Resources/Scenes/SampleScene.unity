@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 287598491}
   - component: {fileID: 287598490}
   m_Layer: 0
-  m_Name: SpawnPoints
+  m_Name: EnemySpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 303474131}
   - component: {fileID: 303474130}
   m_Layer: 5
-  m_Name: Pause
+  m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1282,7 +1282,7 @@ GameObject:
   - component: {fileID: 1120874251}
   - component: {fileID: 1120874250}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ShopText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1328,7 +1328,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PAUSE
+  m_text: SHOP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1926,6 +1926,7 @@ GameObject:
   - component: {fileID: 2054674040}
   - component: {fileID: 2054674041}
   - component: {fileID: 2054674042}
+  - component: {fileID: 2054674043}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1941,7 +1942,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054674035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2027,6 +2028,21 @@ MonoBehaviour:
   secondLevelScore: 100
   thirdLevelScore: 1000
   fourthLevelScore: 10000
+--- !u!114 &2054674043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054674035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1480191c934d344bac9b0d2412af9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPrefab: {fileID: 4672940488903887757, guid: 92bae7fa7d2777749a0ae1ae67b7b4a9,
+    type: 3}
+  towerCost: 5
 --- !u!1 &2102679065
 GameObject:
   m_ObjectHideFlags: 0

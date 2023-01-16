@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FriendCube : MonoBehaviour
+public class DefenceTower : MonoBehaviour
 {
     public float health = 100f;
     public float rangeAttack = 5f;
@@ -10,19 +10,12 @@ public class FriendCube : MonoBehaviour
     public float attackDelay = 5f;
     private float countdown = 3f;
 
-    GameManager gameManager;
-
-    private void Start()
-    {
-        gameManager = GameManager.Instance;
-    }
-
     private void Update()
     {
-        CubeEvent();
+        Attack();
     }
 
-    public virtual void CubeEvent()
+    public virtual void Attack()
     {
         if (GameManager.Instance.DelayToAction(ref countdown))
         {
@@ -32,8 +25,8 @@ public class FriendCube : MonoBehaviour
             {
                 if (enemy.gameObject.CompareTag("Enemy"))
                 {
-                    Cube cube = enemy.GetComponent<Cube>();
-                    cube.health -= attackDamage;
+                    Enemy cube = enemy.GetComponent<Enemy>();
+                    cube.TakeDamage(attackDamage);
 
                     countdown = attackDelay;
                 }
@@ -48,5 +41,4 @@ public class FriendCube : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, rangeAttack);
 #endif
     }
-
 }

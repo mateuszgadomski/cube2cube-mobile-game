@@ -8,18 +8,12 @@ public class Coin : MonoBehaviour
 
     private void Start()
     {
-        ActionsManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
+        EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
     }
 
     private void OnDestroy()
     {
-        ActionsManager.PlayerEvents.OnGameObjectTouchedCallback -= IsTouched;
-    }
-
-    public void AddCoin()
-    {
-        ActionsManager.instance.OnCollectCoinCallBack(addCoinValue);
-        Destroy(gameObject);
+        EventManager.PlayerEvents.OnGameObjectTouchedCallback -= IsTouched;
     }
 
     private void IsTouched(GameObject touchedObject, Touch touch, string coinTag)
@@ -33,5 +27,11 @@ public class Coin : MonoBehaviour
         {
             AddCoin();
         }
+    }
+
+    public void AddCoin()
+    {
+        EventManager.PlayerEvents.CallOnCollectCoin(addCoinValue);
+        Destroy(gameObject);
     }
 }

@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonManager : MonoBehaviour
+public class TouchManager : MonoBehaviour
 {
-    GameManager gameManager;
     private void Start()
     {
-        gameManager = GameManager.Instance;
+        EventManager.TouchEvents.VibratePhoneCallback += VibratePhone;   
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.TouchEvents.VibratePhoneCallback -= VibratePhone;
     }
     private void Update()
     {
@@ -26,7 +30,7 @@ public class ButtonManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                ActionsManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, touch, "Coin");
+                EventManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, touch, "Coin");
             }
         }
     }
@@ -42,8 +46,13 @@ public class ButtonManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                ActionsManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, playerTouches[i], "Enemy");
+                EventManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, playerTouches[i], "Enemy");
             }
         }
+    }
+
+    public void VibratePhone()
+    {
+        Handheld.Vibrate();
     }
 }
