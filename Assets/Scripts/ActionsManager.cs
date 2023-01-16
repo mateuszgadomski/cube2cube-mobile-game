@@ -5,10 +5,15 @@ using UnityEngine;
 public class ActionsManager : MonoBehaviour
 {
     public static ActionsManager instance;
+
+    public PlayerEvents Player;
+
     private void Awake()
     {
         if (instance == null)
         {
+            Player = new PlayerEvents();
+
             instance = this;
         }
         else
@@ -20,12 +25,14 @@ public class ActionsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public delegate void OnGameObjectTouched(GameObject touchedObject, Touch touch, string touchedObjectTag);
-    public OnGameObjectTouched OnGameObjectTouchedCallback;
-    public void CallOnGameObjectTouched(GameObject touchedObject, Touch touch, string enemyTag)
+    public class PlayerEvents
     {
-        OnGameObjectTouchedCallback?.Invoke(touchedObject, touch, enemyTag);
+        public delegate void OnGameObjectTouched(GameObject touchedObject, Touch touch, string touchedObjectTag);
+        public static event OnGameObjectTouched OnGameObjectTouchedCallback;
+        public static void CallOnGameObjectTouched(GameObject touchedObject, Touch touch, string enemyTag) => OnGameObjectTouchedCallback?.Invoke(touchedObject, touch, enemyTag);
+
     }
+
 
     public delegate void OnCollectCoin(float value);
     public OnCollectCoin OnCollectCoinCallBack;

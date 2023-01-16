@@ -26,7 +26,7 @@ public class ButtonManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                ActionsManager.instance.OnGameObjectTouchedCallback(hit.collider.gameObject, touch, "Coin");
+                ActionsManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, touch, "Coin");
             }
         }
     }
@@ -42,7 +42,7 @@ public class ButtonManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                ActionsManager.instance.OnGameObjectTouchedCallback(hit.collider.gameObject, playerTouches[i], "Enemy");
+                ActionsManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, playerTouches[i], "Enemy");
             }
         }
     }
