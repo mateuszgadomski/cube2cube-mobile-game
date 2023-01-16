@@ -141,11 +141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  cubeSpeed: 1
+  enemySpeed: 1
   playerAttackDamage: 25
-  cubeAttackDamage: 2
-  playerAttackDelay: 1
+  playerAttackDelay: 2
+  enemyAttackDamage: 2
   countdown: 0
   coinPrefab: {fileID: 3336979636389385545, guid: a2b83eac5d3d3ca46a9c201b236ed554,
     type: 3}
-  spawnPos: {fileID: 0}

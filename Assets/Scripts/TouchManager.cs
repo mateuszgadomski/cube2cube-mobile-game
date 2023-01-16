@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class TouchManager : MonoBehaviour
 {
-    private void Start()
-    {
-        EventManager.TouchEvents.VibratePhoneCallback += VibratePhone;   
-    }
-
-    private void OnDestroy()
-    {
-        EventManager.TouchEvents.VibratePhoneCallback -= VibratePhone;
-    }
     private void Update()
     {
         SingleTouch();
@@ -49,10 +40,5 @@ public class TouchManager : MonoBehaviour
                 EventManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, playerTouches[i], "Enemy");
             }
         }
-    }
-
-    public void VibratePhone()
-    {
-        Handheld.Vibrate();
     }
 }

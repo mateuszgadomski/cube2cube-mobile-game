@@ -7,7 +7,6 @@ public class EventManager : MonoBehaviour
     public static EventManager instance;
 
     public PlayerEvents Player;
-    public TouchEvents Touch;
     public TowerEvents Tower;
 
     private void Awake()
@@ -15,7 +14,6 @@ public class EventManager : MonoBehaviour
         if (instance == null)
         {
             Player = new PlayerEvents();
-            Touch = new TouchEvents();
             Tower = new TowerEvents();
 
             instance = this;
@@ -27,14 +25,6 @@ public class EventManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-    }
-
-    public class TouchEvents
-    {
-        public delegate void OnScreenTouched();
-        public static event OnScreenTouched VibratePhoneCallback;
-        public static void CallOnScreenTouched() => VibratePhoneCallback?.Invoke();
-
     }
     public class PlayerEvents
     {
@@ -52,6 +42,9 @@ public class EventManager : MonoBehaviour
 
         public static event OnPlayerStatsChanged OnPlayerDamagedCallback;
         public static void CallOnPlayerDamaged(float value) => OnPlayerDamagedCallback?.Invoke(value);
+
+        public static event OnPlayerStatsChanged OnPlayerHealthChangeCallback;
+        public static void CallOnPlayerHealthChange(float value) => OnPlayerHealthChangeCallback?.Invoke(value);
     }
 
     public class TowerEvents

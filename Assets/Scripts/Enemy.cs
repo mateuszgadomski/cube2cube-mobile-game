@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+using System.Linq;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class Enemy : MonoBehaviour
     public float playerAttackDelay = 1f;
     public float enemyAttackDamage = 2f;
 
-    [HideInInspector] public float countdown = 0f;
+    public float countdown = 0f;
 
     public GameObject coinPrefab;
+    private Image countdownBar;
+    private Image healthBar;
     private Vector3 startPos;
     private Transform spawnPos;
 
@@ -24,18 +27,17 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        countdownBar = gameObject.transform.GetChild(0).gameObject.GetComponentsInChildren<Image>().ToList().FirstOrDefault(n => n.gameObject.name == "CountdownBar");
+        healthBar = gameObject.transform.GetChild(0).gameObject.GetComponentsInChildren<Image>().ToList().FirstOrDefault(n => n.gameObject.name == "HealthBar");
 
         EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
+
+        countdown = playerAttackDelay;
     }
 
     private void OnDestroy()
     {
         EventManager.PlayerEvents.OnGameObjectTouchedCallback -= IsTouched;
-    }
-
-    private void Update()
-    {
-        Destroy();
     }
 
     public void IsTouched(GameObject touchedObject, Touch touch, string enemyTag)
@@ -49,9 +51,13 @@ public class Enemy : MonoBehaviour
         {
             if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
             {
-                if (GameManager.Instance.DelayToAction(ref playerAttackDelay))
+                countdownBar.fillAmount = countdown;
+
+                if (GameManager.Instance.DelayToAction(ref countdown))
                 {
                     TakeDamage(playerAttackDamage);
+                    Debug.Log(countdownBar.fillAmount);
+                    GameManager.Instance.VibratePhone();
                     EventManager.PlayerEvents.CallOnCollectPoints(5f);
 
                     countdown = playerAttackDelay;
@@ -75,7 +81,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        EventManager.TouchEvents.CallOnScreenTouched();
+        healthBar.fillAmount = health / 100f;
+        Destroy();
     }
 
     private void Destroy()

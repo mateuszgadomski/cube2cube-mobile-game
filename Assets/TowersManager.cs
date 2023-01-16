@@ -14,16 +14,4 @@ public class TowersManager : MonoBehaviour
     {
         playerStats = GetComponent<PlayerStats>();
     }
-
-    public void BuyTower()
-    {
-        if (playerStats.playerCoins < towerCost)
-        {
-            Debug.Log("You don't have money");
-            return;
-        }
-
-        playerStats.TakeCoins(towerCost);
-        Instantiate(towerPrefab, transform.position, Quaternion.identity, transform);
-    }
 }

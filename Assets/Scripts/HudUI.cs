@@ -5,19 +5,22 @@ using UnityEngine;
 
 public class HudUI : MonoBehaviour
 {
-    public TextMeshProUGUI HealthText;
-    public TextMeshProUGUI CoinText;
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI coinText;
 
-    private PlayerStats playerStats;
+    [SerializeField] private PlayerStats playerStats;
 
     private void Start()
     {
-        playerStats = GameManager.Instance.GetComponent<PlayerStats>();
+        EventManager.PlayerEvents.OnPlayerHealthChangeCallback += OnHealthValueChange;
     }
-    private void Update()
+
+    private void OnDestroy()
     {
-        HealthText.text = $"HEALTH {playerStats.playerHealth:0}";
-        CoinText.text = $"COINS {playerStats.playerCoins:0}";
+        EventManager.PlayerEvents.OnPlayerHealthChangeCallback -= OnHealthValueChange;
     }
+
+    public void OnHealthValueChange(float playerHealth) => healthText.text = $"HEALTH {playerHealth}";
+    public void OnCoinValueChange(float playerCoins) => coinText.text = $"COINS {playerCoins}";
 
 }

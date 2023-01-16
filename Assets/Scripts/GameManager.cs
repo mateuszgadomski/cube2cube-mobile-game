@@ -32,5 +32,10 @@ public class GameManager : MonoBehaviour
         countdown = Mathf.Clamp(countdown, 0f, countdown);
         return false;
     }
+
+    public void VibratePhone()
+    {
+        Handheld.Vibrate();
+    }
 }
 

@@ -29,8 +29,17 @@ public class PlayerStats : MonoBehaviour
 
     public void AddCoins(float addCoinsValue) => playerCoins += addCoinsValue;
 
-    public void TakeDamage(float amount) => playerHealth -= amount;
+    public void TakeDamage(float amount)
+    {
+        playerHealth -= amount;
 
-    public void TakeCoins(float cost) => playerCoins -= cost;
-    
+        if (playerHealth <= 0)
+        {
+            playerHealth = 0;
+            Debug.Log("Game Over");
+        }
+
+        EventManager.PlayerEvents.CallOnPlayerHealthChange(playerHealth);
+    }
+
 }
