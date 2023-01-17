@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -27,7 +22,11 @@ public class PlayerStats : MonoBehaviour
 
     public void AddPoints(float addPointsValue) => playerPoints += addPointsValue;
 
-    public void AddCoins(float addCoinsValue) => playerCoins += addCoinsValue;
+    public void AddCoins(float addCoinsValue)
+    {
+        playerCoins += addCoinsValue;
+        EventManager.PlayerEvents.CallOnPlayerCoinsValueChange(playerCoins);
+    }
 
     public void TakeDamage(float amount)
     {
@@ -41,5 +40,4 @@ public class PlayerStats : MonoBehaviour
 
         EventManager.PlayerEvents.CallOnPlayerHealthChange(playerHealth);
     }
-
 }

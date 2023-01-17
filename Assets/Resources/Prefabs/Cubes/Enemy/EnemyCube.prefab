@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3207547, g: 0.1255785, b: 0.1255785, a: 1}
+  m_Color: {r: 0.5, g: 0.4174528, b: 0.4174528, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -191,6 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38c98895b24d3746acded2c299af77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countdownBar: {fileID: 7316204549268901416}
+  healthBar: {fileID: 5469211863112637828}
 --- !u!1 &7316204549268901422
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +284,7 @@ GameObject:
   - component: {fileID: 7316204549662510041}
   - component: {fileID: 7316204549662510040}
   - component: {fileID: 7316204549662510047}
+  - component: {fileID: 8564999618660383902}
   m_Layer: 0
   m_Name: EnemyCube
   m_TagString: Enemy
@@ -396,6 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b50bb25e459bd44ac222d18e29ef69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 7316204549662510047}
 --- !u!114 &7316204549662510047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,10 +413,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  enemySpeed: 1
-  playerAttackDamage: 25
-  playerAttackDelay: 2
-  enemyAttackDamage: 2
+  enemySpeed: 0.5
+  playerAttackDamage: 50
+  enemyAttackDamage: 1
   countdown: 0
   coinPrefab: {fileID: 3336979636389385545, guid: a2b83eac5d3d3ca46a9c201b236ed554,
     type: 3}
+  enemyUI: {fileID: 4362827692493026753}
+--- !u!114 &8564999618660383902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316204549662510046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fb1030b9a974e4dabf0040608c0604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownBar: {fileID: 7316204549268901416}
+  healthBar: {fileID: 5469211863112637828}
+  material: {fileID: 2100000, guid: b19deb91fd9395f4c9a0cb8da9353484, type: 2}

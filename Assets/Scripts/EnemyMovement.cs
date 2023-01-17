@@ -1,45 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    Enemy enemy;
-    Vector3 direction;
+    [SerializeField] private Enemy enemy;
+    private Vector3 direction;
 
     private void Start()
     {
-        enemy = GetComponent<Enemy>();
         direction = Vector3.up;
     }
 
     private void Update()
     {
-        CubeMove(direction, enemy.enemySpeed);
+        Move(direction, enemy.enemySpeed);
     }
 
-
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (other.gameObject)
-        {
-            enemy.EnemyAttack();
+        ChangeDirection(collider);
+    }
 
-            if (direction != Vector3.down)
+    private void Move(Vector3 direction, float cubeSpeed) => transform.Translate(direction * cubeSpeed * Time.deltaTime, Space.World);
+
+    private void ChangeDirection(Collider collider)
+    {
+        if (collider.gameObject)
+        {
+            if (direction != Vector3.up)
             {
-                direction = Vector3.down;
+                direction = Vector3.up;
+                enemy.Attack();
             }
             else
             {
-                direction = Vector3.up;
+                direction = Vector3.down;
             }
         }
     }
-
-    private void CubeMove(Vector3 direction, float cubeSpeed)
-    {
-        transform.Translate(direction * cubeSpeed * Time.deltaTime, Space.World);
-    }
-
 }

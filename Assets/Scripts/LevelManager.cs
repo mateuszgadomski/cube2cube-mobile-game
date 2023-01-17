@@ -1,19 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class LevelManager : MonoBehaviour
 {
-    public TextMeshProUGUI playerPointsText;
-    public Image playerPointsBar;
-
-    public Camera mainCamera;
-    public Material defaultCubeMaterial;
-
-    private PlayerStats playerStats;
+    [SerializeField] private TextMeshProUGUI playerPointsText;
+    [SerializeField] private Image playerPointsBar;
+    [SerializeField] private Material defaultCubeMaterial;
+    [SerializeField] private PlayerStats playerStats;
 
     private int level;
     public int firstLevelScore = 0;
@@ -21,25 +15,16 @@ public class LevelManager : MonoBehaviour
     public int thirdLevelScore = 1000;
     public int fourthLevelScore = 10000;
 
+    private Color32 lightGreyColor = new(130, 130, 130, 255);
+    private Color32 darkGreyColor = new(96, 96, 96, 255);
 
-    Color32 lightGreyColor = new(130, 130, 130, 255);
-    Color32 darkGreyColor = new(96, 96, 96, 255);
+    private Color32 lightBrownColor = new(217, 181, 150, 255);
+    private Color32 darkBrownColor = new(115, 62, 32, 255);
 
-    Color32 lightBrownColor = new(217, 181, 150, 255);
-    Color32 darkBrownColor = new(115, 62, 32, 255);
-
-    private void Start()
-    {
-        playerStats = GetComponent<PlayerStats>();
-
-        level = 1;
-        ChangeLevelColor(lightGreyColor, darkGreyColor);
-    }
 
     private void Update()
     {
         playerPointsText.text = playerStats.playerPoints.ToString("#");
-
 
         LevelConditions();
         LevelHandler(level);
@@ -47,7 +32,12 @@ public class LevelManager : MonoBehaviour
 
     private void LevelConditions()
     {
-        if (playerStats.playerPoints >= secondLevelScore && playerStats.playerPoints < thirdLevelScore)
+        if (playerStats.playerPoints < secondLevelScore)
+        {
+            level = 1;
+            ChangeLevelColor(lightGreyColor, darkGreyColor);
+        }
+        else if (playerStats.playerPoints >= secondLevelScore && playerStats.playerPoints < thirdLevelScore)
         {
             level = 2;
             ChangeLevelColor(lightBrownColor, darkBrownColor);
@@ -64,12 +54,13 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeLevelColor(Color32 lightColor, Color32 darkColor)
     {
-        mainCamera.backgroundColor = lightColor;
-        playerPointsText.color = lightColor;
+        EventManager.LevelEvents.CallOnLevelChangeLightColors(lightColor);
+        EventManager.LevelEvents.CallOnLevelChangeDarkColors(darkColor);
 
-        playerPointsBar.color = darkColor;
-        playerPointsText.outlineColor = darkColor;
-        defaultCubeMaterial.color = darkColor;
+
+        //defaultCubeMaterial.color = darkColor;
+        //playerPointsBar.color = darkColor;
+        //playerPointsText.outlineColor = darkColor;
     }
 
     private void LevelHandler(int level)
@@ -79,15 +70,19 @@ public class LevelManager : MonoBehaviour
             case 1:
                 playerPointsBar.fillAmount = playerStats.playerPoints / 100;
                 break;
+
             case 2:
                 playerPointsBar.fillAmount = playerStats.playerPoints / 1000;
                 break;
+
             case 3:
                 playerPointsBar.fillAmount = playerStats.playerPoints / 10000;
                 break;
+
             case 4:
                 playerPointsBar.fillAmount = 1f;
                 break;
+
             default:
                 break;
         }

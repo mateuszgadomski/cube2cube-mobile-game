@@ -1,17 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using Unity.VisualScripting;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<EnemyCube> enemies;
+    [SerializeField] private List<EnemyCube> enemies;
 
     public float spawnDelay = 5f;
 
     private float countdown = 3f;
-
 
     private void Update()
     {
@@ -22,10 +18,11 @@ public class EnemySpawner : MonoBehaviour
     {
         if (GameManager.Instance.DelayToAction(ref countdown))
         {
-            int cubePrefabNumber = GameManager.Instance.RandomNumberGenerate(1, enemies.Count + 1);
+            int cubePrefabNumber = GameManager.Instance.RandomNumberGenerate(1, enemies.Count);
             SpawnEnemy(cubePrefabNumber);
         }
     }
+
     private void SpawnEnemy(int id)
     {
         var spawnPoints = SpawnPoints.spawnPoints;
@@ -42,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 int randomSpawnPoint = GameManager.Instance.RandomNumberGenerate(0, spawnPoints.Count);
 
-                GameObject enemyPrefab = Instantiate(enemy.prefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+                Instantiate(enemy.prefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
 
                 spawnPoints.Remove(spawnPoints[randomSpawnPoint]);
 

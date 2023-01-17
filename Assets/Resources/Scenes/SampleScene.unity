@@ -2022,6 +2022,7 @@ MonoBehaviour:
   playerPointsBar: {fileID: 884236598}
   mainCamera: {fileID: 963194227}
   defaultCubeMaterial: {fileID: 2100000, guid: b19deb91fd9395f4c9a0cb8da9353484, type: 2}
+  playerStats: {fileID: 2054674041}
   firstLevelScore: 0
   secondLevelScore: 100
   thirdLevelScore: 1000

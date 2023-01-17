@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchManager : MonoBehaviour
@@ -12,7 +10,7 @@ public class TouchManager : MonoBehaviour
 
     private void SingleTouch()
     {
-        if (Input.touchCount >0)
+        if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
