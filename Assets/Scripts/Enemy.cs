@@ -1,13 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
-
 public class Enemy : MonoBehaviour
 {
-    public float health = 100;
+    public EnemySettings settings;
+    public List<EnemySettings> enemySettings;
     public float enemySpeed = 1f;
-    public float playerAttackDamage = 25f;
-    public float enemyAttackDamage = 2f;
 
-    [HideInInspector] public float countdown = 0f;
+    private float countdown = 0f;
 
     private float playerAttackDelay = 1f;
 
@@ -20,6 +19,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         SaveSpawnPosition();
+        settings = enemySettings[GameManager.Instance.RandomNumberGenerate(0,2)];
     }
 
     private void Start()
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
 
                 if (GameManager.Instance.DelayToAction(ref countdown))
                 {
-                    TakeDamage(playerAttackDamage);
+                    TakeDamage(settings.playerAttackDamage);
                     GameManager.Instance.VibratePhone();
                     EventManager.PlayerEvents.CallOnCollectPoints(5f);
                     countdown = playerAttackDelay;
@@ -72,14 +72,14 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
-        enemyUI.HealthBarChange(health);
+        settings.health -= amount;
+        enemyUI.HealthBarChange(settings.health);
         Destroy();
     }
 
     private void Destroy()
     {
-        if (health <= 0)
+        if (settings.health <= 0)
         {
             SpawnPoints.spawnPoints.Add(spawnPos);
             Instantiate(coinPrefab, transform.position, Quaternion.identity);
@@ -87,5 +87,5 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void Attack() => EventManager.PlayerEvents.CallOnPlayerDamaged(enemyAttackDamage);
+    public virtual void Attack() => EventManager.PlayerEvents.CallOnPlayerDamaged(settings.enemyAttackDamage);
 }

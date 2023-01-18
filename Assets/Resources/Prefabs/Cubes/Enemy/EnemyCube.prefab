@@ -412,11 +412,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a849304b118b4a7caabdb8cc10bdf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  settings: {fileID: 0}
+  enemySettings:
+  - {fileID: 11400000, guid: 8df66a9c126178f4e8390a8345b1ec2f, type: 2}
+  - {fileID: 11400000, guid: 3a4c35d76bd53184f9f006d370648e43, type: 2}
   enemySpeed: 0.5
-  playerAttackDamage: 50
-  enemyAttackDamage: 1
-  countdown: 0
   coinPrefab: {fileID: 3336979636389385545, guid: a2b83eac5d3d3ca46a9c201b236ed554,
     type: 3}
   enemyUI: {fileID: 4362827692493026753}

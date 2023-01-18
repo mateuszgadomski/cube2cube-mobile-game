@@ -32,9 +32,10 @@ public class HudUI : MonoBehaviour
         EventManager.LevelEvents.OnlevelChangeDarkColorsCallback -= ChangeHudBackgroundColor;
     }
 
-    public void OnHealthValueChange(float playerHealth) => healthText.text = $"{healthTextTitle} {playerHealth}";
 
-    public void OnCoinsValueChange(float playerCoins) => coinsText.text = $"{coinsTextTitle} {playerCoins}";
+    public void OnHealthValueChange(float playerHealth) => healthText.text = $"{healthTextTitle} {playerHealth:0}";
+
+    public void OnCoinsValueChange(float playerCoins) => coinsText.text = $"{coinsTextTitle} {playerCoins:0}";
 
     public void ChangeHudTextColors(Color32 color)
     {

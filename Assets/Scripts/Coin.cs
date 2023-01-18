@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class Coin : MonoBehaviour
 {
     public float addCoinValue = 1f;

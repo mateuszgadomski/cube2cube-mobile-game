@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        Move(direction, enemy.enemySpeed);
+        Move(direction, enemy.settings.enemySpeed);
     }
 
     private void OnTriggerEnter(Collider collider)
