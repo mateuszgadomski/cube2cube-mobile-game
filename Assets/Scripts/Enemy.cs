@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         SaveSpawnPosition();
-        settings = enemySettings[GameManager.Instance.RandomNumberGenerate(0,2)];
+        settings = Instantiate(enemySettings[GameManager.Instance.RandomNumberGenerate(0,2)]);
     }
 
     private void Start()
