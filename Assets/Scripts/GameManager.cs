@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
 
     public int RandomNumberGenerate(int minValue, int maxValue)
     {
-        int randomNumber = Random.Range(minValue, maxValue);
-        return randomNumber;
+        int _randomNumber = Random.Range(minValue, maxValue);
+        return _randomNumber;
     }
 
     public bool DelayToAction(ref float countdown)

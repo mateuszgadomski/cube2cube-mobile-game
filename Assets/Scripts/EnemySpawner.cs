@@ -5,9 +5,8 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<EnemyCube> enemies;
 
-    public float spawnDelay = 5f;
-
-    private float countdown = 3f;
+    [SerializeField] private float spawnDelay = 5f;
+    [SerializeField] private float countdown = 3f;
 
     private void Update()
     {
@@ -25,9 +24,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(int id)
     {
-        var spawnPoints = SpawnPoints.spawnPoints;
+        var _spawnPoints = SpawnPoints.spawnPoints;
 
-        if (spawnPoints.Count is 0)
+        if (_spawnPoints.Count is 0)
         {
             countdown = spawnDelay;
             return;
@@ -37,11 +36,11 @@ public class EnemySpawner : MonoBehaviour
         {
             if (enemy.id == id)
             {
-                int randomSpawnPoint = GameManager.Instance.RandomNumberGenerate(0, spawnPoints.Count);
+                int _randomSpawnPointNumber = GameManager.Instance.RandomNumberGenerate(0, _spawnPoints.Count);
 
-                Instantiate(enemy.prefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+                Instantiate(enemy.prefab, _spawnPoints[_randomSpawnPointNumber].position, Quaternion.identity);
 
-                spawnPoints.Remove(spawnPoints[randomSpawnPoint]);
+                _spawnPoints.Remove(_spawnPoints[_randomSpawnPointNumber]);
 
                 countdown = spawnDelay;
             }

@@ -3,38 +3,41 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Enemy enemy;
-    private Vector3 direction;
+
+    private Vector3 _direction;
 
     private void Start()
     {
-        direction = Vector3.up;
+        SetStartDirection(Vector3.up);
     }
 
     private void Update()
     {
-        Move(direction, enemy.settings.enemySpeed);
+        Move(_direction, enemy.settings.enemySpeed);
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnCollisionEnter(Collision collision)
     {
-        ChangeDirection(collider);
+        ChangeDirection(collision);
     }
 
     private void Move(Vector3 direction, float cubeSpeed) => transform.Translate(direction * cubeSpeed * Time.deltaTime, Space.World);
 
-    private void ChangeDirection(Collider collider)
+    private void ChangeDirection(Collision collision)
     {
-        if (collider.gameObject)
+        if (collision.gameObject)
         {
-            if (direction != Vector3.up)
+            if (_direction != Vector3.up)
             {
-                direction = Vector3.up;
+                _direction = Vector3.up;
                 enemy.Attack();
             }
             else
             {
-                direction = Vector3.down;
+                _direction = Vector3.down;
             }
         }
     }
+
+    private void SetStartDirection(Vector3 direction) => _direction = direction;
 }

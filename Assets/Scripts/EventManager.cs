@@ -56,6 +56,10 @@ public class EventManager : MonoBehaviour
         public static event OnPlayerStatsChanged OnPlayerCoinsValueChangeCallback;
 
         public static void CallOnPlayerCoinsValueChange(float value) => OnPlayerCoinsValueChangeCallback?.Invoke(value);
+
+        public static event OnPlayerStatsChanged OnPlayerPointsValueChangeCallBack;
+
+        public static void CallOnPlayerPointsValueChange(float value) => OnPlayerPointsValueChangeCallBack?.Invoke(value);
     }
 
     public class LevelEvents
@@ -63,11 +67,12 @@ public class EventManager : MonoBehaviour
         public delegate void OnLevelChange(Color32 color);
 
         public static event OnLevelChange OnLevelChangeLightColorsCallback;
+
         public static void CallOnLevelChangeLightColors(Color32 color) => OnLevelChangeLightColorsCallback?.Invoke(color);
 
         public static event OnLevelChange OnlevelChangeDarkColorsCallback;
-        public static void CallOnLevelChangeDarkColors(Color32 color) => OnlevelChangeDarkColorsCallback?.Invoke(color);
 
+        public static void CallOnLevelChangeDarkColors(Color32 color) => OnlevelChangeDarkColorsCallback?.Invoke(color);
     }
 
     public class TowerEvents

@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class TowersManager : MonoBehaviour
 {
-    public GameObject towerPrefab;
+    [SerializeField] private GameObject towerPrefab;
 
-    private PlayerStats playerStats;
+    private PlayerStats _playerStats;
 
-    public float towerCost = 100f;
+    [SerializeField] private float towerCost = 100f;
 
     private void Start()
     {
-        playerStats = GetComponent<PlayerStats>();
+        _playerStats = GetComponent<PlayerStats>();
     }
 }

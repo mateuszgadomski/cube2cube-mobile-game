@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +5,7 @@ public class EnemyChangeColorSettings : MonoBehaviour
 {
     [SerializeField] private Image countdownBar;
     [SerializeField] private Image healthBar;
-
-    public Material material;
+    [SerializeField] private Material material;
 
     private void Start()
     {
@@ -23,5 +20,6 @@ public class EnemyChangeColorSettings : MonoBehaviour
     }
 
     public void ChangeMaterialColor(Color32 color) => material.color = color;
+
     public void ChangeCountdownBarColor(Color32 color) => countdownBar.color = color;
 }

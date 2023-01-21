@@ -1,11 +1,19 @@
 using UnityEngine;
+
 public class Coin : MonoBehaviour
 {
-    public float addCoinValue = 1f;
+    [SerializeField] private float addCoinValue = 1f;
+    [SerializeField] private float destroyTime = 2f;
+    private bool check;
 
     private void Start()
     {
         EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
+    }
+
+    private void Update()
+    {
+        DestroyCoin();
     }
 
     private void OnDestroy()
@@ -23,6 +31,14 @@ public class Coin : MonoBehaviour
         if (touch.phase == TouchPhase.Began && touchedObject.CompareTag(coinTag))
         {
             AddCoin();
+        }
+    }
+
+    private void DestroyCoin()
+    {
+        if (GameManager.Instance.DelayToAction(ref destroyTime) == true)
+        {
+            Destroy(gameObject);
         }
     }
 

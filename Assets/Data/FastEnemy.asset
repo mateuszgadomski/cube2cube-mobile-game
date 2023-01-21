@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08f4dfb08893536438401d34d7e61076, type: 3}
-  m_Name: DefaultEnemy
+  m_Name: FastEnemy
   m_EditorClassIdentifier: 
-  health: -125
-  enemySpeed: 1
-  playerAttackDamage: 25
-  enemyAttackDamage: 2
+  health: 100
+  enemySpeed: 3
+  playerAttackDamage: 100
+  enemyAttackDamage: 1
+  playerAttackDelay: 0.5

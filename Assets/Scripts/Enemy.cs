@@ -1,30 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
+
 public class Enemy : MonoBehaviour
 {
-    public EnemySettings settings;
-    public List<EnemySettings> enemySettings;
-    public float enemySpeed = 1f;
-
-    private float countdown = 0f;
-
-    private float playerAttackDelay = 1f;
-
+    [HideInInspector] public EnemySettings settings;
+    [SerializeField] private List<EnemySettings> enemySettings;
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private EnemyUI enemyUI;
 
-    private Vector3 startPos;
-    private Transform spawnPos;
+    private Vector3 _startPos;
+    private Transform _spawnPos;
+
+    private float _countdown = 0f;
 
     private void Awake()
     {
         SaveSpawnPosition();
-        settings = Instantiate(enemySettings[GameManager.Instance.RandomNumberGenerate(0,2)]);
     }
 
     private void Start()
     {
-        countdown = playerAttackDelay;
+        SetRandomEnemySettings();
+        SetStartTouchCountdown(settings.playerAttackDelay);
         EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
     }
 
@@ -44,14 +41,14 @@ public class Enemy : MonoBehaviour
         {
             if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
             {
-                enemyUI.CountdownBarChange(countdown);
+                enemyUI.CountdownBarChange(_countdown);
 
-                if (GameManager.Instance.DelayToAction(ref countdown))
+                if (GameManager.Instance.DelayToAction(ref _countdown))
                 {
                     TakeDamage(settings.playerAttackDamage);
                     GameManager.Instance.VibratePhone();
                     EventManager.PlayerEvents.CallOnCollectPoints(5f);
-                    countdown = playerAttackDelay;
+                    _countdown = settings.playerAttackDelay;
                 }
             }
         }
@@ -59,13 +56,13 @@ public class Enemy : MonoBehaviour
 
     public void SaveSpawnPosition()
     {
-        startPos = transform.position;
+        _startPos = transform.position;
 
         foreach (var spawnPoint in SpawnPoints.spawnPoints)
         {
-            if (startPos == spawnPoint.position)
+            if (_startPos == spawnPoint.position)
             {
-                spawnPos = spawnPoint;
+                _spawnPos = spawnPoint;
             }
         }
     }
@@ -81,11 +78,25 @@ public class Enemy : MonoBehaviour
     {
         if (settings.health <= 0)
         {
-            SpawnPoints.spawnPoints.Add(spawnPos);
-            Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            SpawnPoints.spawnPoints.Add(_spawnPos);
+            CreateCoint(coinPrefab);
             Destroy(gameObject);
         }
     }
 
-    public virtual void Attack() => EventManager.PlayerEvents.CallOnPlayerDamaged(settings.enemyAttackDamage);
+    private void CreateCoint(GameObject prefab)
+    {
+        Instantiate(prefab, transform.position, Quaternion.identity);
+    }
+
+    private void SetRandomEnemySettings()
+    {
+        int _randomNumberSettings = GameManager.Instance.RandomNumberGenerate(0, enemySettings.Count);
+        EnemySettings _enemySettings = Instantiate(enemySettings[_randomNumberSettings]);
+        settings = _enemySettings;
+    }
+
+    private void SetStartTouchCountdown(float playerAttackDelay) => _countdown = playerAttackDelay;
+
+    public void Attack() => EventManager.PlayerEvents.CallOnPlayerDamaged(settings.enemyAttackDamage);
 }
