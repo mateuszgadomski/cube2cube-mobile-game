@@ -23,11 +23,13 @@ public class Enemy : MonoBehaviour
         SetRandomEnemySettings();
         SetStartTouchCountdown(settings.playerAttackDelay);
         EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
+        EventManager.EnemyEvents.OnEnemyTakeDamageCallback += TakeDamage;
     }
 
     private void OnDestroy()
     {
         EventManager.PlayerEvents.OnGameObjectTouchedCallback -= IsTouched;
+        EventManager.EnemyEvents.OnEnemyTakeDamageCallback -= TakeDamage;
     }
 
     public void IsTouched(GameObject touchedObject, Touch touch, string enemyTag)
@@ -72,6 +74,7 @@ public class Enemy : MonoBehaviour
         settings.health -= amount;
         enemyUI.HealthBarChange(settings.health);
         Destroy();
+        Debug.Log("ELO");
     }
 
     private void Destroy()

@@ -2,23 +2,25 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [HideInInspector] public float playerPoints;
+    public float playerHealth = 100f;
+    public float playerCoins = 0f;
 
-    [SerializeField] private float playerHealth = 100f;
-    [SerializeField] private float playerCoins = 0f;
+    [HideInInspector] public float playerPoints;
 
     private void Start()
     {
-        EventManager.PlayerEvents.OnCollectCoinCallback += AddCoins;
+        EventManager.PlayerEvents.OnCollectCoinCallback += ChangeCoins;
         EventManager.PlayerEvents.OnCollectPointsCallback += AddPoints;
         EventManager.PlayerEvents.OnPlayerDamagedCallback += TakeDamage;
+        EventManager.PlayerEvents.OnPlayerAddHealthCallback += AddHealth;
     }
 
     private void OnDestroy()
     {
-        EventManager.PlayerEvents.OnCollectCoinCallback -= AddCoins;
+        EventManager.PlayerEvents.OnCollectCoinCallback -= ChangeCoins;
         EventManager.PlayerEvents.OnCollectPointsCallback -= AddPoints;
         EventManager.PlayerEvents.OnPlayerDamagedCallback -= TakeDamage;
+        EventManager.PlayerEvents.OnPlayerAddHealthCallback -= AddHealth;
     }
 
     public void AddPoints(float addPointsValue)
@@ -27,7 +29,7 @@ public class PlayerStats : MonoBehaviour
         EventManager.PlayerEvents.CallOnPlayerPointsValueChange(playerPoints);
     }
 
-    public void AddCoins(float addCoinsValue)
+    public void ChangeCoins(float addCoinsValue)
     {
         playerCoins += addCoinsValue;
         EventManager.PlayerEvents.CallOnPlayerCoinsValueChange(playerCoins);
@@ -37,6 +39,12 @@ public class PlayerStats : MonoBehaviour
     {
         playerHealth -= amount;
         CheckPlayerHealth();
+        EventManager.PlayerEvents.CallOnPlayerHealthChange(playerHealth);
+    }
+
+    public void AddHealth(float amount)
+    {
+        playerHealth += amount;
         EventManager.PlayerEvents.CallOnPlayerHealthChange(playerHealth);
     }
 

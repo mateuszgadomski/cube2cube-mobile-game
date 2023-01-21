@@ -4,7 +4,6 @@ public class Coin : MonoBehaviour
 {
     [SerializeField] private float addCoinValue = 1f;
     [SerializeField] private float destroyTime = 2f;
-    private bool check;
 
     private void Start()
     {

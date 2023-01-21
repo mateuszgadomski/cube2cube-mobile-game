@@ -5,16 +5,16 @@ public class EventManager : MonoBehaviour
     public static EventManager instance;
 
     public PlayerEvents Player;
-    public TowerEvents Tower;
     public LevelEvents Level;
+    public EnemyEvents Enemy;
 
     private void Awake()
     {
         if (instance == null)
         {
             Player = new PlayerEvents();
-            Tower = new TowerEvents();
             Level = new LevelEvents();
+            Enemy = new EnemyEvents();
 
             instance = this;
         }
@@ -53,6 +53,10 @@ public class EventManager : MonoBehaviour
 
         public static void CallOnPlayerHealthChange(float value) => OnPlayerHealthChangeCallback?.Invoke(value);
 
+        public static event OnPlayerStatsChanged OnPlayerAddHealthCallback;
+
+        public static void CallOnPlayerAddHealth(float value) => OnPlayerAddHealthCallback?.Invoke(value);
+
         public static event OnPlayerStatsChanged OnPlayerCoinsValueChangeCallback;
 
         public static void CallOnPlayerCoinsValueChange(float value) => OnPlayerCoinsValueChangeCallback?.Invoke(value);
@@ -75,12 +79,12 @@ public class EventManager : MonoBehaviour
         public static void CallOnLevelChangeDarkColors(Color32 color) => OnlevelChangeDarkColorsCallback?.Invoke(color);
     }
 
-    public class TowerEvents
+    public class EnemyEvents
     {
-        public delegate void OnBuyTowerDefence();
+        public delegate void OnEnemyTakeDamage(float amount);
 
-        public static event OnBuyTowerDefence DestroyButtonCallback;
+        public static event OnEnemyTakeDamage OnEnemyTakeDamageCallback;
 
-        public static void CallDestroyButton() => DestroyButtonCallback?.Invoke();
+        public static void CallOnEnemyTakeDamage(float amount) => OnEnemyTakeDamageCallback?.Invoke(amount);
     }
 }

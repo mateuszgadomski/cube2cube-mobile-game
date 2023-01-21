@@ -12,7 +12,7 @@ public class HudUI : MonoBehaviour
     private TextMeshProUGUI[] texts;
 
     private readonly string _healthTextTitle = "HEALTH";
-    private readonly string _coinsTextTitle = "COINS";
+    private readonly string _coinsTextTitle = "COINS   ";
 
     private void Start()
     {
@@ -37,7 +37,7 @@ public class HudUI : MonoBehaviour
 
     public void OnHealthValueChange(float playerHealth) => healthText.text = $"{_healthTextTitle} {playerHealth:0}";
 
-    public void OnCoinsValueChange(float playerCoins) => coinsText.text = $"{_coinsTextTitle} {playerCoins:0}";
+    public void OnCoinsValueChange(float playerCoins) => coinsText.text = $"{_coinsTextTitle}  {playerCoins:0}";
 
     public void OnPointsValueChange(float playerPoints) => pointsText.text = $"{playerPoints:0}";
 
