@@ -135,7 +135,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -193,6 +193,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdownBar: {fileID: 7316204549268901416}
   healthBar: {fileID: 5469211863112637828}
+  damageAmountText: {fileID: 5669922165132626400, guid: 94c3cfe557de74b459f1e7c691f34f86,
+    type: 3}
+  material: {fileID: 2100000, guid: b19deb91fd9395f4c9a0cb8da9353484, type: 2}
 --- !u!1 &7316204549268901422
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +287,6 @@ GameObject:
   - component: {fileID: 7316204549662510041}
   - component: {fileID: 7316204549662510040}
   - component: {fileID: 7316204549662510047}
-  - component: {fileID: 8564999618660383902}
   m_Layer: 0
   m_Name: EnemyCube
   m_TagString: Enemy
@@ -420,18 +422,3 @@ MonoBehaviour:
   coinPrefab: {fileID: 3336979636389385545, guid: a2b83eac5d3d3ca46a9c201b236ed554,
     type: 3}
   enemyUI: {fileID: 4362827692493026753}
---- !u!114 &8564999618660383902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7316204549662510046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40fb1030b9a974e4dabf0040608c0604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  countdownBar: {fileID: 7316204549268901416}
-  healthBar: {fileID: 5469211863112637828}
-  material: {fileID: 2100000, guid: b19deb91fd9395f4c9a0cb8da9353484, type: 2}

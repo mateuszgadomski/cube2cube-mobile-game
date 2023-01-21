@@ -73,8 +73,8 @@ public class Enemy : MonoBehaviour
     {
         settings.health -= amount;
         enemyUI.HealthBarChange(settings.health);
+        enemyUI.TakeDamageText(amount);
         Destroy();
-        Debug.Log("ELO");
     }
 
     private void Destroy()

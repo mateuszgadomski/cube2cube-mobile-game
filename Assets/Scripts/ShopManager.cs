@@ -30,14 +30,8 @@ public class ShopManager : MonoBehaviour
     {
         if (_attackCountdown == 0 && CheckCoins(attackSkillCost))
         {
-            if (SpawnPoints.spawnPoints.Count == 0)
-            {
-                Debug.Log("No enemies");
-                return;
-            }
-
             EventManager.EnemyEvents.CallOnEnemyTakeDamage(attackDamage);
-            playerStats.ChangeCoins(attackSkillCost);
+            playerStats.ChangeCoins(-attackSkillCost);
             _attackCountdown = attackDelay;
         }
     }
@@ -46,7 +40,7 @@ public class ShopManager : MonoBehaviour
     {
         if (_healthCountdown == 0 && CheckCoins(healthSkillCost))
         {
-            if (playerStats.playerHealth < 100)
+            if (playerStats.playerHealth >= 100)
             {
                 Debug.Log("You have max HP");
                 return;
