@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
         ChangeDirection(collision);
     }
 
-    private void Move(Vector3 direction, float cubeSpeed) => transform.Translate(direction * cubeSpeed * Time.deltaTime, Space.World);
+    private void Move(Vector3 direction, float cubeSpeed) => transform.Translate(direction * cubeSpeed * Time.deltaTime);
 
     private void ChangeDirection(Collision collision)
     {
