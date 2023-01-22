@@ -8,4 +8,5 @@ public class EnemySettings : ScriptableObject
     public float playerAttackDamage;
     public float enemyAttackDamage;
     public float playerAttackDelay;
+    public float playerPointsForAttack;
 }

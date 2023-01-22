@@ -5,7 +5,7 @@ public class PlayerStats : MonoBehaviour
     public float playerHealth = 100f;
     public float playerCoins = 0f;
 
-    [HideInInspector] public float playerPoints;
+    public float playerPoints;
 
     private void Start()
     {
@@ -46,6 +46,11 @@ public class PlayerStats : MonoBehaviour
     {
         playerHealth += amount;
         EventManager.PlayerEvents.CallOnPlayerHealthChange(playerHealth);
+
+        if (playerHealth >= 100f)
+        {
+            playerHealth = 100f;
+        }
     }
 
     private void CheckPlayerHealth()

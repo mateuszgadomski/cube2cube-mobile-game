@@ -12,8 +12,8 @@ public class LevelManager : MonoBehaviour
     [Header("Experience Settings")]
     [SerializeField] private int secondLevelScore = 100;
 
-    [SerializeField] private int thirdLevelScore = 1000;
-    [SerializeField] private int fourthLevelScore = 10000;
+    [SerializeField] private int thirdLevelScore = 300;
+    [SerializeField] private int fourthLevelScore = 500;
 
     private int _level;
 
@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         else if (playerStats.playerPoints >= secondLevelScore && playerStats.playerPoints < thirdLevelScore)
         {
             _level = 2;
-            ChangeLevelColor(ColorsManager.Instance.lightBrownColor, ColorsManager.Instance.darkBrownColor);
+            ChangeLevelColor(ColorsManager.Instance.newCC, ColorsManager.Instance.newBB);
         }
         else if (playerStats.playerPoints >= thirdLevelScore && playerStats.playerPoints < fourthLevelScore)
         {

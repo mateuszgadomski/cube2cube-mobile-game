@@ -7,6 +7,7 @@ public class HudUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI coinsText;
     [SerializeField] private TextMeshProUGUI pointsText;
+    [SerializeField] private TextMeshProUGUI alertPrefab;
     [SerializeField] private GameObject notification;
 
     private Image[] backgroundButtons;
@@ -46,10 +47,12 @@ public class HudUI : MonoBehaviour
 
     public void OnNotificationTextChange(string alertText)
     {
-        Vector3 _posFromCenter = new(0, -15f, 0);
-        var _notification = Instantiate(notification, transform.position + _posFromCenter, Quaternion.identity, transform.parent);
-        var _alertText = _notification.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        _alertText.text = alertText.ToUpper();
+        if (!notification.activeSelf)
+        {
+            notification.SetActive(true);
+            var _alert = Instantiate(alertPrefab, notification.transform.position, Quaternion.identity, notification.transform);
+            _alert.text = alertText.ToUpper();
+        }
     }
 
     public void ChangeHudTextColors(Color32 color)

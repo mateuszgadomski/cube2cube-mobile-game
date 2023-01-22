@@ -17,3 +17,4 @@ MonoBehaviour:
   playerAttackDamage: 50
   enemyAttackDamage: 2
   playerAttackDelay: 1
+  playerPointsForAttack: 15

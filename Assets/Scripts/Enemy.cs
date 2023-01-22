@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
                 {
                     TakeDamage(settings.playerAttackDamage);
                     GameManager.Instance.VibratePhone();
-                    EventManager.PlayerEvents.CallOnCollectPoints(5f);
+                    EventManager.PlayerEvents.CallOnCollectPoints(settings.playerPointsForAttack);
                     _countdown = settings.playerAttackDelay;
                 }
             }

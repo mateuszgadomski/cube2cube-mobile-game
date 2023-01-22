@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -216,6 +216,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1181492289}
+  - {fileID: 825323910}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1223,6 +1224,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &825323909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 825323910}
+  m_Layer: 5
+  m_Name: Notification
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &825323910
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825323909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 93071292}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -250}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &884236596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,8 +1799,9 @@ MonoBehaviour:
   healthText: {fileID: 1452958767}
   coinsText: {fileID: 281585947}
   pointsText: {fileID: 523837030}
-  notification: {fileID: 6708491327105433799, guid: 3b3be94a9b2ee496ba924a083e8e4ebe,
+  alertPrefab: {fileID: 82156690897765529, guid: 658e46dab88c128479f0381ea153bece,
     type: 3}
+  notification: {fileID: 825323909}
 --- !u!1 &1339564904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,12 +2364,12 @@ MonoBehaviour:
   darkGreyColor:
     serializedVersion: 2
     rgba: 4284506208
-  lightBrownColor:
+  newCC:
     serializedVersion: 2
-    rgba: 4288067033
-  darkBrownColor:
+    rgba: 4289313753
+  newBB:
     serializedVersion: 2
-    rgba: 4280303219
+    rgba: 4283848358
 --- !u!114 &2054674045
 MonoBehaviour:
   m_ObjectHideFlags: 0
