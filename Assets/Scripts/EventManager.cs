@@ -77,6 +77,10 @@ public class EventManager : MonoBehaviour
         public static event OnLevelChange OnlevelChangeDarkColorsCallback;
 
         public static void CallOnLevelChangeDarkColors(Color32 color) => OnlevelChangeDarkColorsCallback?.Invoke(color);
+
+        public delegate void OnNotificationInScene(string alertText);
+        public static event OnNotificationInScene OnNotificationInSceneCallback;
+        public static void CallOnNotificationInScene(string alertText) => OnNotificationInSceneCallback?.Invoke(alertText);
     }
 
     public class EnemyEvents

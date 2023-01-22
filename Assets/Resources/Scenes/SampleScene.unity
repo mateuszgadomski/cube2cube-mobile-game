@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 93071290}
   - component: {fileID: 93071289}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1762,6 +1762,8 @@ MonoBehaviour:
   healthText: {fileID: 1452958767}
   coinsText: {fileID: 281585947}
   pointsText: {fileID: 523837030}
+  notification: {fileID: 6708491327105433799, guid: 3b3be94a9b2ee496ba924a083e8e4ebe,
+    type: 3}
 --- !u!1 &1339564904
 GameObject:
   m_ObjectHideFlags: 0

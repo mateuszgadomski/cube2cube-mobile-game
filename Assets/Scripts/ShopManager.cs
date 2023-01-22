@@ -42,7 +42,7 @@ public class ShopManager : MonoBehaviour
         {
             if (playerStats.playerHealth >= 100)
             {
-                Debug.Log("You have max HP");
+                EventManager.LevelEvents.CallOnNotificationInScene("You have max HP");
                 return;
             }
 
@@ -64,7 +64,7 @@ public class ShopManager : MonoBehaviour
     {
         if (playerStats.playerCoins < skillCost)
         {
-            Debug.Log("You don't have coins!");
+            EventManager.LevelEvents.CallOnNotificationInScene("You don't have coins!");
             return false;
         }
         return true;
