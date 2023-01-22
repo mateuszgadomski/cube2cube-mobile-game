@@ -26,8 +26,6 @@ public class HudUI : MonoBehaviour
         EventManager.LevelEvents.OnLevelChangeLightColorsCallback += ChangeHudTextColors;
         EventManager.LevelEvents.OnlevelChangeDarkColorsCallback += ChangeHudBackgroundColor;
         EventManager.LevelEvents.OnNotificationInSceneCallback += OnNotificationTextChange;
-
-        OnNotificationTextChange("TEST TEST TEST");
     }
 
     private void OnDestroy()
@@ -53,8 +51,6 @@ public class HudUI : MonoBehaviour
         var _alertText = _notification.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         _alertText.text = alertText.ToUpper();
     }
-
-    public void DestroyNotification() => Destroy(notification);
 
     public void ChangeHudTextColors(Color32 color)
     {
