@@ -12,12 +12,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        //Application.targetFrameRate = 60;
-        //QualitySettings.vSyncCount = 1;
-    }
-
     public int RandomNumberGenerate(int minValue, int maxValue)
     {
         int _randomNumber = Random.Range(minValue, maxValue);

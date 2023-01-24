@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private EnemyUI enemyUI;
 
+    [SerializeField] private Particles takeDamageParticles;
+    [SerializeField] private Particles destroyEnemyParticles;
+    private Animator animator;
+
     private Vector3 _startPos;
     private Transform _spawnPos;
 
@@ -20,6 +24,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         SetRandomEnemySettings();
         SetStartTouchCountdown(settings.playerAttackDelay);
         EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
@@ -36,6 +41,7 @@ public class Enemy : MonoBehaviour
     {
         if (touchedObject != this.gameObject)
         {
+            ChangeAnimationState("TakeDamage", false);
             return;
         }
 
@@ -44,15 +50,21 @@ public class Enemy : MonoBehaviour
             if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
             {
                 enemyUI.CountdownBarChange(_countdown);
-
+                ChangeAnimationState("TakeDamage", true);
                 if (GameManager.Instance.DelayToAction(ref _countdown))
                 {
                     TakeDamage(settings.playerAttackDamage);
+                    Instantiate(takeDamageParticles, transform.position, Quaternion.identity);
                     GameManager.Instance.VibratePhone();
                     EventManager.PlayerEvents.CallOnCollectPoints(settings.playerPointsForAttack);
+
                     _countdown = settings.playerAttackDelay;
                 }
             }
+        }
+        else
+        {
+            ChangeAnimationState("TakeDamage", false);
         }
     }
 
@@ -82,6 +94,7 @@ public class Enemy : MonoBehaviour
         if (settings.health <= 0)
         {
             SpawnPoints.spawnPoints.Add(_spawnPos);
+            Instantiate(destroyEnemyParticles, transform.position, Quaternion.identity);
             CreateCoint(coinPrefab);
             Destroy(gameObject);
         }
@@ -100,6 +113,8 @@ public class Enemy : MonoBehaviour
     }
 
     private void SetStartTouchCountdown(float playerAttackDelay) => _countdown = playerAttackDelay;
+
+    private void ChangeAnimationState(string animationName, bool state) => animator.SetBool(animationName, state);
 
     public void Attack() => EventManager.PlayerEvents.CallOnPlayerDamaged(settings.enemyAttackDamage);
 }

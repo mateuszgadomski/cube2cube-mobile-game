@@ -1,17 +1,19 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Enemy enemy;
+    [SerializeField] private Rigidbody rb;
 
     private Vector3 _direction;
 
     private void Start()
     {
-        SetStartDirection(Vector3.up);
+        SetStartDirection(transform.up);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move(_direction, enemy.settings.enemySpeed);
     }
@@ -21,20 +23,20 @@ public class EnemyMovement : MonoBehaviour
         ChangeDirection(collision);
     }
 
-    private void Move(Vector3 direction, float cubeSpeed) => transform.Translate(direction * cubeSpeed * Time.deltaTime);
+    private void Move(Vector3 direction, float speed) => rb.velocity = Vector3.ClampMagnitude(direction, speed);
 
     private void ChangeDirection(Collision collision)
     {
         if (collision.gameObject)
         {
-            if (_direction != Vector3.up)
+            if (_direction != transform.up)
             {
-                _direction = Vector3.up;
+                _direction = transform.up;
                 enemy.Attack();
             }
             else
             {
-                _direction = Vector3.down;
+                _direction = -transform.up;
             }
         }
     }
