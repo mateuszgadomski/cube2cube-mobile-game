@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private List<EnemySettings> enemySettings;
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private EnemyUI enemyUI;
+    [SerializeField] private Animator animator;
 
-    [SerializeField] private Particles takeDamageParticles;
-    [SerializeField] private Particles destroyEnemyParticles;
-    private Animator animator;
+    [SerializeField] private GameObject takeDamageParticles;
+    [SerializeField] private GameObject destroyEnemyParticles;
 
     private Vector3 _startPos;
     private Transform _spawnPos;
@@ -20,13 +20,12 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         SaveSpawnPosition();
+        SetRandomEnemySettings();
+        SetStartTouchCountdown(settings.playerAttackDelay);
     }
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        SetRandomEnemySettings();
-        SetStartTouchCountdown(settings.playerAttackDelay);
         EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
         EventManager.EnemyEvents.OnEnemyTakeDamageCallback += TakeDamage;
     }
@@ -51,11 +50,9 @@ public class Enemy : MonoBehaviour
             {
                 enemyUI.CountdownBarChange(_countdown);
                 ChangeAnimationState("TakeDamage", true);
-                if (GameManager.Instance.DelayToAction(ref _countdown))
+                if (GameManager.instance.DelayToAction(ref _countdown))
                 {
                     TakeDamage(settings.playerAttackDamage);
-                    Instantiate(takeDamageParticles, transform.position, Quaternion.identity);
-                    GameManager.Instance.VibratePhone();
                     EventManager.PlayerEvents.CallOnCollectPoints(settings.playerPointsForAttack);
 
                     _countdown = settings.playerAttackDelay;
@@ -86,6 +83,7 @@ public class Enemy : MonoBehaviour
         settings.health -= amount;
         enemyUI.HealthBarChange(settings.health);
         enemyUI.TakeDamageText(amount);
+        ObjectPoolManager.instance.SpawnGameObject(takeDamageParticles, transform.position, Quaternion.identity);
         Destroy();
     }
 
@@ -94,7 +92,7 @@ public class Enemy : MonoBehaviour
         if (settings.health <= 0)
         {
             SpawnPoints.spawnPoints.Add(_spawnPos);
-            Instantiate(destroyEnemyParticles, transform.position, Quaternion.identity);
+            ObjectPoolManager.instance.SpawnGameObject(destroyEnemyParticles, transform.position, Quaternion.identity);
             CreateCoint(coinPrefab);
             Destroy(gameObject);
         }
@@ -102,12 +100,12 @@ public class Enemy : MonoBehaviour
 
     private void CreateCoint(GameObject prefab)
     {
-        Instantiate(prefab, transform.position, Quaternion.identity);
+        ObjectPoolManager.instance.SpawnGameObject(prefab, transform.position, Quaternion.identity);
     }
 
     private void SetRandomEnemySettings()
     {
-        int _randomNumberSettings = GameManager.Instance.RandomNumberGenerate(0, enemySettings.Count);
+        int _randomNumberSettings = GameManager.instance.RandomNumberGenerate(0, enemySettings.Count);
         EnemySettings _enemySettings = Instantiate(enemySettings[_randomNumberSettings]);
         settings = _enemySettings;
     }

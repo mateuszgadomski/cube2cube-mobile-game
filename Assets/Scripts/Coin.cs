@@ -3,16 +3,13 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     [SerializeField] private float addCoinValue = 1f;
-    [SerializeField] private float destroyTime = 2f;
+    [SerializeField] private float startDestroyTime = 2f;
+    [SerializeField] private GameObject destroyCoinParticles;
+    private float _destroyTime;
 
     private void Start()
     {
         EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
-    }
-
-    private void Update()
-    {
-        DestroyCoin();
     }
 
     private void OnDestroy()
@@ -33,17 +30,16 @@ public class Coin : MonoBehaviour
         }
     }
 
-    private void DestroyCoin()
+    public void DestroyCoin()
     {
-        if (GameManager.Instance.DelayToAction(ref destroyTime) == true)
-        {
-            Destroy(gameObject);
-        }
+        ObjectPoolManager.instance.SpawnGameObject(destroyCoinParticles, transform.position, transform.rotation);
+        ObjectPoolManager.instance.DespawnGameObject(gameObject);
     }
 
     public void AddCoin()
     {
         EventManager.PlayerEvents.CallOnCollectCoin(addCoinValue);
-        Destroy(gameObject);
+        ObjectPoolManager.instance.SpawnGameObject(destroyCoinParticles, transform.position, transform.rotation);
+        ObjectPoolManager.instance.DespawnGameObject(gameObject);
     }
 }

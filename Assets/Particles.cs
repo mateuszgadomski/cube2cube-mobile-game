@@ -6,6 +6,6 @@ public class Particles : MonoBehaviour
 {
     public void DestroyParticle()
     {
-        Destroy(gameObject);
+        ObjectPoolManager.instance.DespawnGameObject(gameObject);
     }
 }

@@ -424,9 +424,10 @@ MonoBehaviour:
   coinPrefab: {fileID: 3336979636389385545, guid: a2b83eac5d3d3ca46a9c201b236ed554,
     type: 3}
   enemyUI: {fileID: 4362827692493026753}
-  takeDamageParticles: {fileID: 6474175390360936839, guid: 1ac6971b65cbcf54a92b7687c2f7249e,
+  animator: {fileID: 1815644572696999953}
+  takeDamageParticles: {fileID: 5538432334282843516, guid: 1ac6971b65cbcf54a92b7687c2f7249e,
     type: 3}
-  destroyEnemyParticles: {fileID: 2115002799253953319, guid: 6df168ba0559f714e96c1a53e42a65e9,
+  destroyEnemyParticles: {fileID: 7589934864999595311, guid: 6df168ba0559f714e96c1a53e42a65e9,
     type: 3}
 --- !u!95 &1815644572696999953
 Animator:

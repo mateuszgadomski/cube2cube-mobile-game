@@ -15,9 +15,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawner()
     {
-        if (GameManager.Instance.DelayToAction(ref countdown))
+        if (GameManager.instance.DelayToAction(ref countdown))
         {
-            int cubePrefabNumber = GameManager.Instance.RandomNumberGenerate(1, enemies.Count);
+            int cubePrefabNumber = GameManager.instance.RandomNumberGenerate(1, enemies.Count);
             SpawnEnemy(cubePrefabNumber);
         }
     }
@@ -36,10 +36,9 @@ public class EnemySpawner : MonoBehaviour
         {
             if (enemy.id == id)
             {
-                int _randomSpawnPointNumber = GameManager.Instance.RandomNumberGenerate(0, _spawnPoints.Count);
+                int _randomSpawnPointNumber = GameManager.instance.RandomNumberGenerate(0, _spawnPoints.Count);
 
                 Instantiate(enemy.prefab, _spawnPoints[_randomSpawnPointNumber].position, Quaternion.identity);
-
                 _spawnPoints.Remove(_spawnPoints[_randomSpawnPointNumber]);
 
                 countdown = spawnDelay;

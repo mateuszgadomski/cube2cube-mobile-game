@@ -1,15 +1,22 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public int RandomNumberGenerate(int minValue, int maxValue)

@@ -56,7 +56,7 @@ public class ShopManager : MonoBehaviour
     {
         if (countdown != 0)
         {
-            GameManager.Instance.DelayToAction(ref countdown);
+            GameManager.instance.DelayToAction(ref countdown);
         }
     }
 
