@@ -3,9 +3,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     [SerializeField] private float addCoinValue = 1f;
-    [SerializeField] private float startDestroyTime = 2f;
     [SerializeField] private GameObject destroyCoinParticles;
-    private float _destroyTime;
 
     private void Start()
     {

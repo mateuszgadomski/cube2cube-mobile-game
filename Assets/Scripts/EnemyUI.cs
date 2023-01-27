@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour
 {
-    [SerializeField] protected Image countdownBar;
-    [SerializeField] protected Image healthBar;
-    [SerializeField] protected TextMeshProUGUI damageAmountText;
+    [SerializeField] private Image countdownBar;
+    [SerializeField] private Image healthBar;
+    [SerializeField] private TextMeshProUGUI damageAmountText;
     [SerializeField] private Material material;
 
     private void Start()

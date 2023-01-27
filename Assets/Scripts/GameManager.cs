@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void Start()
+    {
+        Time.timeScale = 0;
+    }
+
     public int RandomNumberGenerate(int minValue, int maxValue)
     {
         int _randomNumber = Random.Range(minValue, maxValue);

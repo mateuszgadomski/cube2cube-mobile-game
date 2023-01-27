@@ -45,9 +45,9 @@ public class ShopManager : MonoBehaviour
                 EventManager.LevelEvents.CallOnNotificationInScene("You have max HP");
                 return;
             }
-
             EventManager.PlayerEvents.CallOnPlayerAddHealth(healthAmount);
             EventManager.PlayerEvents.CallOnCollectCoin(-healthSkillCost);
+            EventManager.PlayerEvents.CallOnPlayerHealthChange(playerStats.playerHealth);
             _healthCountdown = healthDelay;
         }
     }

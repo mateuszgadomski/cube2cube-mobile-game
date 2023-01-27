@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FastEnemy
   m_EditorClassIdentifier: 
   health: 100
-  enemySpeed: 0.5
+  enemySpeed: 1
   playerAttackDamage: 100
   enemyAttackDamage: 1
   playerAttackDelay: 0.5
