@@ -31,6 +31,7 @@ public class ShopManager : MonoBehaviour
         if (_attackCountdown == 0 && CheckCoins(attackSkillCost))
         {
             EventManager.EnemyEvents.CallOnEnemyTakeDamage(attackDamage);
+            SoundManager.instance.PlaySound("AttackSkill");
             playerStats.ChangeCoins(-attackSkillCost);
             _attackCountdown = attackDelay;
         }
@@ -48,6 +49,7 @@ public class ShopManager : MonoBehaviour
             EventManager.PlayerEvents.CallOnPlayerAddHealth(healthAmount);
             EventManager.PlayerEvents.CallOnCollectCoin(-healthSkillCost);
             EventManager.PlayerEvents.CallOnPlayerHealthChange(playerStats.playerHealth);
+            SoundManager.instance.PlaySound("HealthSkill");
             _healthCountdown = healthDelay;
         }
     }

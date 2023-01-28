@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 public class EventManager : MonoBehaviour
 {
@@ -79,8 +80,22 @@ public class EventManager : MonoBehaviour
         public static void CallOnLevelChangeDarkColors(Color32 color) => OnlevelChangeDarkColorsCallback?.Invoke(color);
 
         public delegate void OnNotificationInScene(string alertText);
+
         public static event OnNotificationInScene OnNotificationInSceneCallback;
+
         public static void CallOnNotificationInScene(string alertText) => OnNotificationInSceneCallback?.Invoke(alertText);
+
+        public delegate void OnEndGameState();
+
+        public static event OnEndGameState OnEndGameStateCallback;
+
+        public static void CallOnEndGameState() => OnEndGameStateCallback?.Invoke();
+
+        public delegate float OnEndGameChangeHighestScore();
+
+        public static event OnEndGameChangeHighestScore OnChangeHighestScoreCallback;
+
+        public static float CallOnChangeHighestScore() => (float)(OnChangeHighestScoreCallback?.Invoke());
     }
 
     public class EnemyEvents

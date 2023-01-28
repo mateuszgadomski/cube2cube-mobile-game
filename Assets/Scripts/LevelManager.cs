@@ -39,15 +39,17 @@ public class LevelManager : MonoBehaviour
         else if (playerStats.playerPoints >= secondLevelScore && playerStats.playerPoints < thirdLevelScore)
         {
             _level = 2;
-            ChangeLevelColor(ColorsManager.Instance.newCC, ColorsManager.Instance.newBB);
+            ChangeLevelColor(ColorsManager.Instance.lightGreenColor, ColorsManager.Instance.darkGreenColor);
         }
         else if (playerStats.playerPoints >= thirdLevelScore && playerStats.playerPoints < fourthLevelScore)
         {
             _level = 3;
+            ChangeLevelColor(ColorsManager.Instance.lightBlueColor, ColorsManager.Instance.darkBlueColor);
         }
         else if (playerStats.playerPoints >= fourthLevelScore)
         {
             _level = 4;
+            ChangeLevelColor(ColorsManager.Instance.lightTurquoiseColor, ColorsManager.Instance.darkTurquoiseColor);
         }
     }
 

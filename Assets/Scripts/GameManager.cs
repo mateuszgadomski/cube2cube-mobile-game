@@ -15,14 +15,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
     {
-        Time.timeScale = 0;
+        SetGameTime(0f);
     }
+
+    public void SetGameTime(float time) => Time.timeScale = time;
 
     public int RandomNumberGenerate(int minValue, int maxValue)
     {

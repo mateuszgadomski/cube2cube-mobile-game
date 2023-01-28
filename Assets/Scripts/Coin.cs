@@ -37,6 +37,7 @@ public class Coin : MonoBehaviour
     public void AddCoin()
     {
         EventManager.PlayerEvents.CallOnCollectCoin(addCoinValue);
+        SoundManager.instance.PlaySound("AddCoin");
         ObjectPoolManager.instance.SpawnGameObject(destroyCoinParticles, transform.position, transform.rotation);
         ObjectPoolManager.instance.DespawnGameObject(gameObject);
     }

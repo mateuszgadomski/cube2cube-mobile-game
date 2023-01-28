@@ -28,12 +28,14 @@ public class Enemy : MonoBehaviour
     {
         EventManager.PlayerEvents.OnGameObjectTouchedCallback += IsTouched;
         EventManager.EnemyEvents.OnEnemyTakeDamageCallback += TakeDamage;
+        EventManager.LevelEvents.OnEndGameStateCallback += OnGameEndDestroyEnemies;
     }
 
     private void OnDestroy()
     {
         EventManager.PlayerEvents.OnGameObjectTouchedCallback -= IsTouched;
         EventManager.EnemyEvents.OnEnemyTakeDamageCallback -= TakeDamage;
+        EventManager.LevelEvents.OnEndGameStateCallback -= OnGameEndDestroyEnemies;
     }
 
     public void IsTouched(GameObject touchedObject, Touch touch, string enemyTag)
@@ -54,6 +56,7 @@ public class Enemy : MonoBehaviour
                 {
                     TakeDamage(settings.playerAttackDamage);
                     EventManager.PlayerEvents.CallOnCollectPoints(settings.playerPointsForAttack);
+                    SoundManager.instance.PlaySound("StandardTouch");
 
                     _countdown = settings.playerAttackDelay;
                 }
@@ -92,13 +95,19 @@ public class Enemy : MonoBehaviour
         if (settings.health <= 0)
         {
             SpawnPoints.spawnPoints.Add(_spawnPos);
-            ObjectPoolManager.instance.SpawnGameObject(destroyEnemyParticles, transform.position, Quaternion.identity);
-            CreateCoint(coinPrefab);
+            InstantiateDestroyParticles();
+            CreateCoin(coinPrefab);
             Destroy(gameObject);
         }
     }
 
-    private void CreateCoint(GameObject prefab)
+    public void OnGameEndDestroyEnemies()
+    {
+        InstantiateDestroyParticles();
+        Destroy(gameObject);
+    }
+
+    private void CreateCoin(GameObject prefab)
     {
         ObjectPoolManager.instance.SpawnGameObject(prefab, transform.position, Quaternion.identity);
     }
@@ -113,6 +122,8 @@ public class Enemy : MonoBehaviour
     private void SetStartTouchCountdown(float playerAttackDelay) => _countdown = playerAttackDelay;
 
     private void ChangeAnimationState(string animationName, bool state) => animator.SetBool(animationName, state);
+
+    private void InstantiateDestroyParticles() => ObjectPoolManager.instance.SpawnGameObject(destroyEnemyParticles, transform.position, Quaternion.identity);
 
     public void Attack() => EventManager.PlayerEvents.CallOnPlayerDamaged(settings.enemyAttackDamage);
 }

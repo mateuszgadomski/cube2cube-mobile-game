@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +10,7 @@ public class HudUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinsText;
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private TextMeshProUGUI alertPrefab;
+    [SerializeField] private GameObject endGamePanel;
     [SerializeField] private GameObject notification;
 
     private Image[] backgroundButtons;
@@ -27,6 +30,7 @@ public class HudUI : MonoBehaviour
         EventManager.LevelEvents.OnLevelChangeLightColorsCallback += ChangeHudTextColors;
         EventManager.LevelEvents.OnlevelChangeDarkColorsCallback += ChangeHudBackgroundColor;
         EventManager.LevelEvents.OnNotificationInSceneCallback += OnNotificationTextChange;
+        EventManager.LevelEvents.OnEndGameStateCallback += GetActiveEndGamePanel;
     }
 
     private void OnDestroy()
@@ -37,6 +41,7 @@ public class HudUI : MonoBehaviour
         EventManager.LevelEvents.OnLevelChangeLightColorsCallback -= ChangeHudTextColors;
         EventManager.LevelEvents.OnlevelChangeDarkColorsCallback -= ChangeHudBackgroundColor;
         EventManager.LevelEvents.OnNotificationInSceneCallback -= OnNotificationTextChange;
+        EventManager.LevelEvents.OnEndGameStateCallback -= GetActiveEndGamePanel;
     }
 
     public void OnHealthValueChange(float playerHealth) => healthText.text = $"{_healthTextTitle} {playerHealth:0}";
@@ -69,5 +74,20 @@ public class HudUI : MonoBehaviour
         {
             backgroundButton.color = color;
         }
+    }
+
+    public void GetActiveEndGamePanel()
+    {
+        if (!endGamePanel.activeSelf)
+        {
+            StartCoroutine(Countdown());
+        }
+        endGamePanel.SetActive(true);
+    }
+
+    private IEnumerator Countdown()
+    {
+        yield return new WaitForSeconds(2f);
+        GameManager.instance.SetGameTime(0f);
     }
 }
