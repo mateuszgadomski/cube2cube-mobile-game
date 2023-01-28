@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class SoundManager : MonoBehaviour
 
     public List<Sound> sounds;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource secondAudioSource;
 
     private void Awake()
     {
@@ -28,11 +30,23 @@ public class SoundManager : MonoBehaviour
         {
             if (sound.name == soundName)
             {
-                audioSource.clip = sound.clip;
-                audioSource.volume = sound.volume;
-                audioSource.Play();
+                if (!audioSource.isPlaying)
+                {
+                    AudioSourceHandler(audioSource, sound);
+                }
+                else
+                {
+                    AudioSourceHandler(secondAudioSource, sound);
+                }
             }
         }
+    }
+
+    private void AudioSourceHandler(AudioSource audioSource, Sound sound)
+    {
+        audioSource.clip = sound.clip;
+        audioSource.volume = sound.volume;
+        audioSource.Play();
     }
 }
 
