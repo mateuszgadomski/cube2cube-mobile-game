@@ -19,5 +19,5 @@ A simple mobile game that involves destroying cubes that move vertically.
 
 ![App Screenshot](https://img.itch.zone/aW1hZ2UvMTg5OTYxMy8xMTE2NTE0NS5qcGc=/347x500/FjFG%2B9.jpg)
 
-- More screenshots: [Itch.io - Where Am I?](https://mgadomski.itch.io/cube2cube)
 - Video: [Youtube - cube2cube](https://youtu.be/ruPZTkWuT7c)
+- More screenshots: [Itch.io - Where Am I?](https://mgadomski.itch.io/cube2cube)
