@@ -7,8 +7,8 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     public List<Sound> sounds;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioSource secondAudioSource;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _secondAudioSource;
 
     private void Awake()
     {
@@ -29,13 +29,13 @@ public class SoundManager : MonoBehaviour
         {
             if (sound.name == soundName)
             {
-                if (!audioSource.isPlaying)
+                if (!_audioSource.isPlaying)
                 {
-                    AudioSourceHandler(audioSource, sound);
+                    AudioSourceHandler(_audioSource, sound);
                 }
                 else
                 {
-                    AudioSourceHandler(secondAudioSource, sound);
+                    AudioSourceHandler(_secondAudioSource, sound);
                 }
             }
         }

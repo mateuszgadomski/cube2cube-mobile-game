@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class TouchManager : MonoBehaviour
 {
+    private readonly string _coinTag = "Coin";
+    private readonly string _enemyTag = "Enemy";
+
     private void Update()
     {
         SingleTouch();
@@ -19,7 +22,7 @@ public class TouchManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                EventManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, touch, "Coin");
+                EventManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, touch, _coinTag);
             }
         }
     }
@@ -35,7 +38,7 @@ public class TouchManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                EventManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, playerTouches[i], "Enemy");
+                EventManager.PlayerEvents.CallOnGameObjectTouched(hit.collider.gameObject, playerTouches[i], _enemyTag);
             }
         }
     }

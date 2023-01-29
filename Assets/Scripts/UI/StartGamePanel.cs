@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class StartGamePanel : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private TextMeshProUGUI highestScoreText;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private TextMeshProUGUI _highestScoreText;
 
     private void Start()
     {
-        highestScoreText.text = $"HIGHEST SCORE: {EventManager.LevelEvents.CallOnChangeHighestScore()}";
+        _highestScoreText.text = $"HIGHEST SCORE: {EventManager.LevelEvents.CallOnChangeHighestScore()}";
     }
 
     public void ClosePanelAnimation()
     {
-        animator.SetTrigger("ClosePanel");
+        _animator.SetTrigger("ClosePanel");
         SoundManager.instance.PlaySound("StandardTouch");
     }
 

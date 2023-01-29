@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1179,8 +1179,8 @@ MonoBehaviour:
   - name: HealthSkill
     clip: {fileID: 8300000, guid: 5d2235b364d6e3848b93fddf8d89e248, type: 3}
     volume: 1
-  audioSource: {fileID: 605827271}
-  secondAudioSource: {fileID: 605827273}
+  _audioSource: {fileID: 605827271}
+  _secondAudioSource: {fileID: 605827273}
 --- !u!82 &605827271
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3512,10 +3512,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd18ea5f5ac022949a76e49f08603364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPointsText: {fileID: 0}
-  _playerPointsBar: {fileID: 0}
-  _defaultCubeMaterial: {fileID: 0}
-  _playerStats: {fileID: 0}
+  _playerPointsText: {fileID: 523837030}
+  _playerPointsBar: {fileID: 884236598}
+  _defaultCubeMaterial: {fileID: 2100000, guid: b19deb91fd9395f4c9a0cb8da9353484,
+    type: 2}
+  _playerStats: {fileID: 2054674041}
   _secondLevelScore: 100
   _thirdLevelScore: 300
   _fourthLevelScore: 500
@@ -3567,13 +3568,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b293d24be0f4545a184fca86229e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 2054674041}
-  attackDamage: 50
-  attackDelay: 5
-  attackSkillCost: 10
-  healthAmount: 50
-  healthDelay: 5
-  healthSkillCost: 10
+  _playerStats: {fileID: 2054674041}
+  _attackDamage: 50
+  _attackDelay: 5
+  _attackSkillCost: 10
+  _healthAmount: 50
+  _healthDelay: 5
+  _healthSkillCost: 10
 --- !u!1 &2076927551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3629,8 +3630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9266ba8d2fd204b9b6d24c93bd3c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2076927557}
-  highestScoreText: {fileID: 745783173}
+  _animator: {fileID: 2076927557}
+  _highestScoreText: {fileID: 745783173}
 --- !u!114 &2076927554
 MonoBehaviour:
   m_ObjectHideFlags: 0
