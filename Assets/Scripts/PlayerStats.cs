@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float playerPoints;
+    public float PlayerPoints;
+    public float PlayerHealth = 100f;
+    public float PlayerCoins = 0f;
+    public float HighestScore = 0f;
 
-    public float playerHealth = 100f;
-    public float playerCoins = 0f;
-
-    public float highestScore = 0f;
+    private readonly string _playerPrefsHighestScore = "highestScore";
+    private readonly string _endGameSoundName = "EndGame";
 
     private void Start()
     {
@@ -27,51 +28,51 @@ public class PlayerStats : MonoBehaviour
         EventManager.LevelEvents.OnChangeHighestScoreCallback -= GetHighestPoints;
     }
 
+    public float GetHighestPoints() => PlayerPrefs.GetFloat(_playerPrefsHighestScore, HighestScore);
+
     public void AddPoints(float addPointsValue)
     {
-        playerPoints += addPointsValue;
+        PlayerPoints += addPointsValue;
 
-        if (playerPoints > PlayerPrefs.GetFloat("highestScore", highestScore))
+        if (PlayerPoints > PlayerPrefs.GetFloat(_playerPrefsHighestScore, HighestScore))
         {
-            PlayerPrefs.SetFloat("highestScore", playerPoints);
+            PlayerPrefs.SetFloat(_playerPrefsHighestScore, PlayerPoints);
         }
 
-        EventManager.PlayerEvents.CallOnPlayerPointsValueChange(playerPoints);
+        EventManager.PlayerEvents.CallOnPlayerPointsValueChange(PlayerPoints);
     }
 
     public void ChangeCoins(float addCoinsValue)
     {
-        playerCoins += addCoinsValue;
-        EventManager.PlayerEvents.CallOnPlayerCoinsValueChange(playerCoins);
+        PlayerCoins += addCoinsValue;
+        EventManager.PlayerEvents.CallOnPlayerCoinsValueChange(PlayerCoins);
     }
 
     public void TakeDamage(float amount)
     {
-        playerHealth -= amount;
+        PlayerHealth -= amount;
         CheckPlayerHealth();
-        EventManager.PlayerEvents.CallOnPlayerHealthChange(playerHealth);
+        EventManager.PlayerEvents.CallOnPlayerHealthChange(PlayerHealth);
         Handheld.Vibrate();
     }
 
     public void AddHealth(float amount)
     {
-        playerHealth += amount;
-        EventManager.PlayerEvents.CallOnPlayerHealthChange(playerHealth);
+        PlayerHealth += amount;
+        EventManager.PlayerEvents.CallOnPlayerHealthChange(PlayerHealth);
 
-        if (playerHealth >= 100f)
+        if (PlayerHealth >= 100f)
         {
-            playerHealth = 100f;
+            PlayerHealth = 100f;
         }
     }
 
-    public float GetHighestPoints() => PlayerPrefs.GetFloat("highestScore", highestScore);
-
     private void CheckPlayerHealth()
     {
-        if (playerHealth <= 0)
+        if (PlayerHealth <= 0)
         {
-            playerHealth = 0;
-            SoundManager.instance.PlaySound("EndGame");
+            PlayerHealth = 0;
+            SoundManager.instance.PlaySound(_endGameSoundName);
             EventManager.LevelEvents.CallOnEndGameState();
         }
     }

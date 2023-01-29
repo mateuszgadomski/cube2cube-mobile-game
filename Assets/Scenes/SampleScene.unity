@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2369,13 +2369,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22763e5696e52c441b0fc0e632979a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 1452958767}
-  coinsText: {fileID: 281585947}
-  pointsText: {fileID: 523837030}
-  alertPrefab: {fileID: 82156690897765529, guid: 658e46dab88c128479f0381ea153bece,
+  _healthText: {fileID: 1452958767}
+  _coinsText: {fileID: 281585947}
+  _pointsText: {fileID: 523837030}
+  _alertPrefab: {fileID: 82156690897765529, guid: 658e46dab88c128479f0381ea153bece,
     type: 3}
-  endGamePanel: {fileID: 1855490023}
-  notification: {fileID: 825323909}
+  _endGamePanel: {fileID: 1855490023}
+  _notification: {fileID: 825323909}
 --- !u!1 &1339564904
 GameObject:
   m_ObjectHideFlags: 0
@@ -3069,8 +3069,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35606a6b2eade140a0a4f74a7484d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1855490026}
-  highestScoreText: {fileID: 1617159901}
+  _animator: {fileID: 1855490026}
+  _highestScoreText: {fileID: 1617159901}
 --- !u!1 &2010466488
 GameObject:
   m_ObjectHideFlags: 0
@@ -3478,12 +3478,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3b0295ad5fbef47a9643c7aecc0349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - prefab: {fileID: 7316204549662510046, guid: 7d4a79cf8a295064eade694ac4cfc305,
+  _enemies:
+  - Prefab: {fileID: 7316204549662510046, guid: 7d4a79cf8a295064eade694ac4cfc305,
       type: 3}
-    id: 1
-  spawnDelay: 2
-  countdown: 3
+    Id: 1
+  _spawnDelay: 5
+  _countdown: 3
 --- !u!114 &2054674041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3496,10 +3496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa22497646154ae09aa22e3940f333b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPoints: 0
-  playerHealth: 100
-  playerCoins: 0
-  highestScore: 0
+  PlayerPoints: 0
+  PlayerHealth: 100
+  PlayerCoins: 0
+  HighestScore: 0
 --- !u!114 &2054674042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3512,13 +3512,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd18ea5f5ac022949a76e49f08603364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPointsText: {fileID: 523837030}
-  playerPointsBar: {fileID: 884236598}
-  defaultCubeMaterial: {fileID: 2100000, guid: b19deb91fd9395f4c9a0cb8da9353484, type: 2}
-  playerStats: {fileID: 2054674041}
-  secondLevelScore: 100
-  thirdLevelScore: 1000
-  fourthLevelScore: 10000
+  _playerPointsText: {fileID: 0}
+  _playerPointsBar: {fileID: 0}
+  _defaultCubeMaterial: {fileID: 0}
+  _playerStats: {fileID: 0}
+  _secondLevelScore: 100
+  _thirdLevelScore: 300
+  _fourthLevelScore: 500
 --- !u!114 &2054674044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3531,28 +3531,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2938b82614b768242b25b2ba3c8b97b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightGreyColor:
+  LightGreyColor:
     serializedVersion: 2
     rgba: 4286743170
-  darkGreyColor:
+  DarkGreyColor:
     serializedVersion: 2
     rgba: 4284506208
-  lightGreenColor:
+  LightGreenColor:
     serializedVersion: 2
     rgba: 4287279523
-  darkGreenColor:
+  DarkGreenColor:
     serializedVersion: 2
     rgba: 4283924824
-  lightBlueColor:
+  LightBlueColor:
     serializedVersion: 2
     rgba: 4289301879
-  darkBlueColor:
+  DarkBlueColor:
     serializedVersion: 2
     rgba: 4286011969
-  lightTurquoiseColor:
+  LightTurquoiseColor:
     serializedVersion: 2
     rgba: 4288923256
-  darkTurquoiseColor:
+  DarkTurquoiseColor:
     serializedVersion: 2
     rgba: 4287736662
 --- !u!114 &2054674045

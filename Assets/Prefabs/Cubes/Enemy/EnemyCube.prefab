@@ -191,11 +191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38c98895b24d3746acded2c299af77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownBar: {fileID: 7316204549268901416}
-  healthBar: {fileID: 5469211863112637828}
-  damageAmountText: {fileID: 5669922165132626400, guid: 94c3cfe557de74b459f1e7c691f34f86,
+  _countdownBar: {fileID: 7316204549268901416}
+  _healthBar: {fileID: 5469211863112637828}
+  _damageAmountText: {fileID: 5669922165132626400, guid: 94c3cfe557de74b459f1e7c691f34f86,
     type: 3}
-  material: {fileID: 2100000, guid: b19deb91fd9395f4c9a0cb8da9353484, type: 2}
+  _material: {fileID: 2100000, guid: b19deb91fd9395f4c9a0cb8da9353484, type: 2}
 --- !u!1 &7316204549268901422
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,8 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b50bb25e459bd44ac222d18e29ef69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 7316204549662510047}
-  rb: {fileID: 7316204549662510041}
+  _enemy: {fileID: 7316204549662510047}
+  _rb: {fileID: 7316204549662510041}
 --- !u!114 &7316204549662510047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,8 +416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a849304b118b4a7caabdb8cc10bdf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 0}
-  enemySettings:
+  Settings: {fileID: 0}
+  _enemySettings:
   - {fileID: 11400000, guid: 8df66a9c126178f4e8390a8345b1ec2f, type: 2}
   - {fileID: 11400000, guid: 3a4c35d76bd53184f9f006d370648e43, type: 2}
   - {fileID: 11400000, guid: 973fcbc795d36c54d972e394bd2d65c1, type: 2}

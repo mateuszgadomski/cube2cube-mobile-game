@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     {
         SaveSpawnPosition();
         SetRandomEnemySettings();
-        SetStartTouchCountdown(Settings.playerAttackDelay);
+        SetStartTouchCountdown(Settings.PlayerAttackDelay);
     }
 
     private void Start()
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         EventManager.LevelEvents.OnEndGameStateCallback -= OnGameEndDestroyEnemies;
     }
 
-    public void Attack() => EventManager.PlayerEvents.CallOnPlayerDamaged(Settings.enemyAttackDamage);
+    public void Attack() => EventManager.PlayerEvents.CallOnPlayerDamaged(Settings.EnemyAttackDamage);
 
     public void SaveSpawnPosition()
     {
@@ -71,13 +71,13 @@ public class Enemy : MonoBehaviour
             {
                 _enemyUI.CountdownBarChange(_countdown);
                 ChangeAnimationState(_takeDamageAnimationState, true);
-                if (GameManager.instance.DelayToAction(ref _countdown))
+                if (GameManager.Instance.DelayToAction(ref _countdown))
                 {
-                    TakeDamage(Settings.playerAttackDamage);
-                    EventManager.PlayerEvents.CallOnCollectPoints(Settings.playerPointsForAttack);
+                    TakeDamage(Settings.PlayerAttackDamage);
+                    EventManager.PlayerEvents.CallOnCollectPoints(Settings.PlayerPointsForAttack);
                     SoundManager.instance.PlaySound(_touchAnimationState);
 
-                    _countdown = Settings.playerAttackDelay;
+                    _countdown = Settings.PlayerAttackDelay;
                 }
             }
         }
@@ -89,8 +89,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        Settings.health -= amount;
-        _enemyUI.HealthBarChange(Settings.health);
+        Settings.Health -= amount;
+        _enemyUI.HealthBarChange(Settings.Health);
         _enemyUI.TakeDamageText(amount);
         ObjectPoolManager.instance.SpawnGameObject(_takeDamageParticles, transform.position, Quaternion.identity);
         Destroy();
@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
 
     private void SetRandomEnemySettings()
     {
-        int randomNumberSettings = GameManager.instance.RandomNumberGenerate(0, _enemySettings.Count);
+        int randomNumberSettings = GameManager.Instance.RandomNumberGenerate(0, _enemySettings.Count);
         EnemySettings enemySettings = Instantiate(_enemySettings[randomNumberSettings]);
         Settings = enemySettings;
     }
@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
 
     private void Destroy()
     {
-        if (Settings.health <= 0)
+        if (Settings.Health <= 0)
         {
             SpawnPoints.spawnPoints.Add(_spawnPos);
             InstantiateDestroyParticles();

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private List<EnemyCube> enemies;
+    [SerializeField] private List<EnemyCube> _enemies;
 
-    [SerializeField] private float spawnDelay = 5f;
-    [SerializeField] private float countdown = 3f;
+    [SerializeField] private float _spawnDelay = 5f;
+    [SerializeField] private float _countdown = 3f;
 
     private void Update()
     {
@@ -15,33 +15,33 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawner()
     {
-        if (GameManager.instance.DelayToAction(ref countdown))
+        if (GameManager.Instance.DelayToAction(ref _countdown))
         {
-            int cubePrefabNumber = GameManager.instance.RandomNumberGenerate(1, enemies.Count);
+            int cubePrefabNumber = GameManager.Instance.RandomNumberGenerate(1, _enemies.Count);
             SpawnEnemy(cubePrefabNumber);
         }
     }
 
     private void SpawnEnemy(int id)
     {
-        var _spawnPoints = SpawnPoints.spawnPoints;
+        var spawnPoints = SpawnPoints.spawnPoints;
 
-        if (_spawnPoints.Count is 0)
+        if (spawnPoints.Count is 0)
         {
-            countdown = spawnDelay;
+            _countdown = _spawnDelay;
             return;
         }
 
-        foreach (var enemy in enemies)
+        foreach (var enemy in _enemies)
         {
-            if (enemy.id == id)
+            if (enemy.Id == id)
             {
-                int _randomSpawnPointNumber = GameManager.instance.RandomNumberGenerate(0, _spawnPoints.Count);
+                int randomSpawnNumber = GameManager.Instance.RandomNumberGenerate(0, spawnPoints.Count);
 
-                Instantiate(enemy.prefab, _spawnPoints[_randomSpawnPointNumber].position, Quaternion.identity);
-                _spawnPoints.Remove(_spawnPoints[_randomSpawnPointNumber]);
+                Instantiate(enemy.Prefab, spawnPoints[randomSpawnNumber].position, Quaternion.identity);
+                spawnPoints.Remove(spawnPoints[randomSpawnNumber]);
 
-                countdown = spawnDelay;
+                _countdown = _spawnDelay;
             }
         }
     }
@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
 [System.Serializable]
 public class EnemyCube
 {
-    public static Enemy instance;
-    public GameObject prefab;
-    public int id;
+    public static Enemy Instance;
+    public GameObject Prefab;
+    public int Id;
 }

@@ -20,6 +20,6 @@ public class StartGamePanel : MonoBehaviour
     public void StartGamePanelActive()
     {
         gameObject.SetActive(!gameObject.activeSelf);
-        GameManager.instance.SetGameTime(1.0f);
+        GameManager.Instance.SetGameTime(1.0f);
     }
 }

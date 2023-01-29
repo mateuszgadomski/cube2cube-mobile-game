@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public static EventManager instance;
+    public static EventManager Instance;
 
     public PlayerEvents Player;
     public LevelEvents Level;
@@ -10,13 +10,13 @@ public class EventManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
             Player = new PlayerEvents();
             Level = new LevelEvents();
             Enemy = new EnemyEvents();
 
-            instance = this;
+            Instance = this;
         }
         else
         {

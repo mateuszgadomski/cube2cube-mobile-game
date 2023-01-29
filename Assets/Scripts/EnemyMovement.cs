@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Enemy enemy;
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Rigidbody _rb;
 
     private Vector3 _direction;
 
@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move(_direction, enemy.Settings.enemySpeed);
+        Move(_direction, _enemy.Settings.EnemySpeed);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -22,7 +22,9 @@ public class EnemyMovement : MonoBehaviour
         ChangeDirection(collision);
     }
 
-    private void Move(Vector3 direction, float speed) => rb.velocity = Vector3.ClampMagnitude(direction, speed);
+    private void SetStartDirection(Vector3 direction) => _direction = direction;
+
+    private void Move(Vector3 direction, float speed) => _rb.velocity = Vector3.ClampMagnitude(direction, speed);
 
     private void ChangeDirection(Collision collision)
     {
@@ -31,7 +33,7 @@ public class EnemyMovement : MonoBehaviour
             if (_direction != transform.up)
             {
                 _direction = transform.up;
-                enemy.Attack();
+                _enemy.Attack();
             }
             else
             {
@@ -39,6 +41,4 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-
-    private void SetStartDirection(Vector3 direction) => _direction = direction;
 }

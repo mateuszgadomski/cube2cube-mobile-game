@@ -4,16 +4,16 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI playerPointsText;
-    [SerializeField] private Image playerPointsBar;
-    [SerializeField] private Material defaultCubeMaterial;
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private TextMeshProUGUI _playerPointsText;
+    [SerializeField] private Image _playerPointsBar;
+    [SerializeField] private Material _defaultCubeMaterial;
+    [SerializeField] private PlayerStats _playerStats;
 
     [Header("Experience Settings")]
-    [SerializeField] private int secondLevelScore = 100;
+    [SerializeField] private int _secondLevelScore = 100;
 
-    [SerializeField] private int thirdLevelScore = 300;
-    [SerializeField] private int fourthLevelScore = 500;
+    [SerializeField] private int _thirdLevelScore = 300;
+    [SerializeField] private int _fourthLevelScore = 500;
 
     private int _level;
 
@@ -31,22 +31,22 @@ public class LevelManager : MonoBehaviour
 
     private void LevelConditions()
     {
-        if (playerStats.playerPoints < secondLevelScore)
+        if (_playerStats.PlayerPoints < _secondLevelScore)
         {
             _level = 1;
             ChangeLevelColor(ColorsManager.Instance.LightGreyColor, ColorsManager.Instance.DarkGreyColor);
         }
-        else if (playerStats.playerPoints >= secondLevelScore && playerStats.playerPoints < thirdLevelScore)
+        else if (_playerStats.PlayerPoints >= _secondLevelScore && _playerStats.PlayerPoints < _thirdLevelScore)
         {
             _level = 2;
             ChangeLevelColor(ColorsManager.Instance.LightGreenColor, ColorsManager.Instance.DarkGreenColor);
         }
-        else if (playerStats.playerPoints >= thirdLevelScore && playerStats.playerPoints < fourthLevelScore)
+        else if (_playerStats.PlayerPoints >= _thirdLevelScore && _playerStats.PlayerPoints < _fourthLevelScore)
         {
             _level = 3;
             ChangeLevelColor(ColorsManager.Instance.LightBlueColor, ColorsManager.Instance.DarkBlueColor);
         }
-        else if (playerStats.playerPoints >= fourthLevelScore)
+        else if (_playerStats.PlayerPoints >= _fourthLevelScore)
         {
             _level = 4;
             ChangeLevelColor(ColorsManager.Instance.LightTurquoiseColor, ColorsManager.Instance.DarkTurquoiseColor);
@@ -58,19 +58,19 @@ public class LevelManager : MonoBehaviour
         switch (level)
         {
             case 1:
-                playerPointsBar.fillAmount = playerStats.playerPoints / secondLevelScore;
+                _playerPointsBar.fillAmount = _playerStats.PlayerPoints / _secondLevelScore;
                 break;
 
             case 2:
-                playerPointsBar.fillAmount = playerStats.playerPoints / thirdLevelScore;
+                _playerPointsBar.fillAmount = _playerStats.PlayerPoints / _thirdLevelScore;
                 break;
 
             case 3:
-                playerPointsBar.fillAmount = playerStats.playerPoints / fourthLevelScore;
+                _playerPointsBar.fillAmount = _playerStats.PlayerPoints / _fourthLevelScore;
                 break;
 
             case 4:
-                playerPointsBar.fillAmount = 1f;
+                _playerPointsBar.fillAmount = 1f;
                 break;
 
             default:

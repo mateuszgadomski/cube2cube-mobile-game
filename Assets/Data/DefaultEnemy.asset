@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f4dfb08893536438401d34d7e61076, type: 3}
   m_Name: DefaultEnemy
   m_EditorClassIdentifier: 
-  health: 100
-  enemySpeed: 0.7
-  playerAttackDamage: 50
-  enemyAttackDamage: 2
-  playerAttackDelay: 1
-  playerPointsForAttack: 15
+  Health: 100
+  EnemySpeed: 1
+  PlayerAttackDamage: 50
+  EnemyAttackDamage: 2
+  PlayerAttackDelay: 1
+  PlayerPointsForAttack: 15

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f4dfb08893536438401d34d7e61076, type: 3}
   m_Name: FastEnemy
   m_EditorClassIdentifier: 
-  health: 100
-  enemySpeed: 1
-  playerAttackDamage: 100
-  enemyAttackDamage: 1
-  playerAttackDelay: 0.5
-  playerPointsForAttack: 10
+  Health: 100
+  EnemySpeed: 1.2
+  PlayerAttackDamage: 100
+  EnemyAttackDamage: 1
+  PlayerAttackDelay: 0.5
+  PlayerPointsForAttack: 10

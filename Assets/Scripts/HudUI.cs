@@ -5,23 +5,23 @@ using UnityEngine.UI;
 
 public class HudUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private TextMeshProUGUI coinsText;
-    [SerializeField] private TextMeshProUGUI pointsText;
-    [SerializeField] private TextMeshProUGUI alertPrefab;
-    [SerializeField] private GameObject endGamePanel;
-    [SerializeField] private GameObject notification;
+    [SerializeField] private TextMeshProUGUI _healthText;
+    [SerializeField] private TextMeshProUGUI _coinsText;
+    [SerializeField] private TextMeshProUGUI _pointsText;
+    [SerializeField] private TextMeshProUGUI _alertPrefab;
+    [SerializeField] private GameObject _endGamePanel;
+    [SerializeField] private GameObject _notification;
 
-    private Image[] backgroundButtons;
-    private TextMeshProUGUI[] texts;
+    private Image[] _backgroundButtons;
+    private TextMeshProUGUI[] _texts;
 
     private readonly string _healthTextTitle = "HEALTH";
     private readonly string _coinsTextTitle = "COINS   ";
 
     private void Start()
     {
-        texts = GetComponentsInChildren<TextMeshProUGUI>();
-        backgroundButtons = GetComponentsInChildren<Image>();
+        _texts = GetComponentsInChildren<TextMeshProUGUI>();
+        _backgroundButtons = GetComponentsInChildren<Image>();
 
         EventManager.PlayerEvents.OnPlayerHealthChangeCallback += OnHealthValueChange;
         EventManager.PlayerEvents.OnPlayerCoinsValueChangeCallback += OnCoinsValueChange;
@@ -43,25 +43,25 @@ public class HudUI : MonoBehaviour
         EventManager.LevelEvents.OnEndGameStateCallback -= GetActiveEndGamePanel;
     }
 
-    public void OnHealthValueChange(float playerHealth) => healthText.text = $"{_healthTextTitle} {playerHealth:0}";
+    public void OnHealthValueChange(float playerHealth) => _healthText.text = $"{_healthTextTitle} {playerHealth:0}";
 
-    public void OnCoinsValueChange(float playerCoins) => coinsText.text = $"{_coinsTextTitle}  {playerCoins:0}";
+    public void OnCoinsValueChange(float playerCoins) => _coinsText.text = $"{_coinsTextTitle}  {playerCoins:0}";
 
-    public void OnPointsValueChange(float playerPoints) => pointsText.text = $"{playerPoints:0}";
+    public void OnPointsValueChange(float playerPoints) => _pointsText.text = $"{playerPoints:0}";
 
     public void OnNotificationTextChange(string alertText)
     {
-        if (!notification.activeSelf)
+        if (!_notification.activeSelf)
         {
-            notification.SetActive(true);
-            var _alert = Instantiate(alertPrefab, notification.transform.position, Quaternion.identity, notification.transform);
-            _alert.text = alertText.ToUpper();
+            _notification.SetActive(true);
+            var alert = Instantiate(_alertPrefab, _notification.transform.position, Quaternion.identity, _notification.transform);
+            alert.text = alertText.ToUpper();
         }
     }
 
     public void ChangeHudTextColors(Color32 color)
     {
-        foreach (var text in texts)
+        foreach (var text in _texts)
         {
             text.color = color;
         }
@@ -69,7 +69,7 @@ public class HudUI : MonoBehaviour
 
     public void ChangeHudBackgroundColor(Color32 color)
     {
-        foreach (var backgroundButton in backgroundButtons)
+        foreach (var backgroundButton in _backgroundButtons)
         {
             backgroundButton.color = color;
         }
@@ -77,16 +77,16 @@ public class HudUI : MonoBehaviour
 
     public void GetActiveEndGamePanel()
     {
-        if (!endGamePanel.activeSelf)
+        if (!_endGamePanel.activeSelf)
         {
             StartCoroutine(Countdown());
         }
-        endGamePanel.SetActive(true);
+        _endGamePanel.SetActive(true);
     }
 
     private IEnumerator Countdown()
     {
         yield return new WaitForSeconds(2f);
-        GameManager.instance.SetGameTime(0f);
+        GameManager.Instance.SetGameTime(0f);
     }
 }

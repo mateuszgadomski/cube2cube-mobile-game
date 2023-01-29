@@ -39,14 +39,14 @@ public class ShopManager : MonoBehaviour
     {
         if (_healthCountdown == 0 && CheckCoins(healthSkillCost))
         {
-            if (playerStats.playerHealth >= 100)
+            if (playerStats.PlayerHealth >= 100)
             {
                 EventManager.LevelEvents.CallOnNotificationInScene("You have max HP");
                 return;
             }
             EventManager.PlayerEvents.CallOnPlayerAddHealth(healthAmount);
             EventManager.PlayerEvents.CallOnCollectCoin(-healthSkillCost);
-            EventManager.PlayerEvents.CallOnPlayerHealthChange(playerStats.playerHealth);
+            EventManager.PlayerEvents.CallOnPlayerHealthChange(playerStats.PlayerHealth);
             SoundManager.instance.PlaySound("HealthSkill");
             _healthCountdown = healthDelay;
         }
@@ -56,13 +56,13 @@ public class ShopManager : MonoBehaviour
     {
         if (countdown != 0)
         {
-            GameManager.instance.DelayToAction(ref countdown);
+            GameManager.Instance.DelayToAction(ref countdown);
         }
     }
 
     private bool CheckCoins(float skillCost)
     {
-        if (playerStats.playerCoins < skillCost)
+        if (playerStats.PlayerCoins < skillCost)
         {
             EventManager.LevelEvents.CallOnNotificationInScene("You don't have coins!");
             return false;

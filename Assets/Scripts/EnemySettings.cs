@@ -3,10 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy Settings")]
 public class EnemySettings : ScriptableObject
 {
-    public float health;
-    public float enemySpeed;
-    public float playerAttackDamage;
-    public float enemyAttackDamage;
-    public float playerAttackDelay;
-    public float playerPointsForAttack;
+    public float Health;
+    public float EnemySpeed;
+    public float PlayerAttackDamage;
+    public float EnemyAttackDamage;
+    public float PlayerAttackDelay;
+    public float PlayerPointsForAttack;
 }

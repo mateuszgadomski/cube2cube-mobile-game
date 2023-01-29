@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour
 {
-    [SerializeField] private Image countdownBar;
-    [SerializeField] private Image healthBar;
-    [SerializeField] private TextMeshProUGUI damageAmountText;
-    [SerializeField] private Material material;
+    [SerializeField] private Image _countdownBar;
+    [SerializeField] private Image _healthBar;
+    [SerializeField] private TextMeshProUGUI _damageAmountText;
+    [SerializeField] private Material _material;
 
     private void Start()
     {
@@ -21,18 +21,18 @@ public class EnemyUI : MonoBehaviour
         EventManager.LevelEvents.OnLevelChangeLightColorsCallback -= ChangeCountdownBarColor;
     }
 
+    public void HealthBarChange(float healthValue) => _healthBar.fillAmount = healthValue / 100f;
+
+    public void CountdownBarChange(float countdown) => _countdownBar.fillAmount = countdown;
+
+    public void ChangeMaterialColor(Color32 color) => _material.color = color;
+
+    public void ChangeCountdownBarColor(Color32 color) => _countdownBar.color = color;
+
     public void TakeDamageText(float damage)
     {
-        TextMeshProUGUI damageText = Instantiate(damageAmountText, transform.position, Quaternion.identity, transform);
-        damageText.color = healthBar.color;
+        TextMeshProUGUI damageText = Instantiate(_damageAmountText, transform.position, Quaternion.identity, transform);
+        damageText.color = _healthBar.color;
         damageText.text = $"-{damage}";
     }
-
-    public void HealthBarChange(float healthValue) => healthBar.fillAmount = healthValue / 100f;
-
-    public void CountdownBarChange(float countdown) => countdownBar.fillAmount = countdown;
-
-    public void ChangeMaterialColor(Color32 color) => material.color = color;
-
-    public void ChangeCountdownBarColor(Color32 color) => countdownBar.color = color;
 }
