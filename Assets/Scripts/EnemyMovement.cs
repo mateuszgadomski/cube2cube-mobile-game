@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move(_direction, enemy.settings.enemySpeed);
+        Move(_direction, enemy.Settings.enemySpeed);
     }
 
     private void OnCollisionEnter(Collision collision)

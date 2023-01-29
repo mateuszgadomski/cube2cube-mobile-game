@@ -421,13 +421,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8df66a9c126178f4e8390a8345b1ec2f, type: 2}
   - {fileID: 11400000, guid: 3a4c35d76bd53184f9f006d370648e43, type: 2}
   - {fileID: 11400000, guid: 973fcbc795d36c54d972e394bd2d65c1, type: 2}
-  coinPrefab: {fileID: 3336979636389385545, guid: a2b83eac5d3d3ca46a9c201b236ed554,
+  _coinPrefab: {fileID: 3336979636389385545, guid: a2b83eac5d3d3ca46a9c201b236ed554,
     type: 3}
-  enemyUI: {fileID: 4362827692493026753}
-  animator: {fileID: 1815644572696999953}
-  takeDamageParticles: {fileID: 5538432334282843516, guid: 1ac6971b65cbcf54a92b7687c2f7249e,
+  _enemyUI: {fileID: 4362827692493026753}
+  _animator: {fileID: 1815644572696999953}
+  _takeDamageParticles: {fileID: 5538432334282843516, guid: 1ac6971b65cbcf54a92b7687c2f7249e,
     type: 3}
-  destroyEnemyParticles: {fileID: 7589934864999595311, guid: 6df168ba0559f714e96c1a53e42a65e9,
+  _destroyEnemyParticles: {fileID: 7589934864999595311, guid: 6df168ba0559f714e96c1a53e42a65e9,
     type: 3}
 --- !u!95 &1815644572696999953
 Animator:

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraSettings : MonoBehaviour
 {
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Camera _mainCamera;
 
     private void Start()
     {
@@ -14,5 +14,5 @@ public class CameraSettings : MonoBehaviour
         EventManager.LevelEvents.OnLevelChangeLightColorsCallback -= ChangeBackgroundColor;
     }
 
-    public void ChangeBackgroundColor(Color32 color) => mainCamera.backgroundColor = color;
+    public void ChangeBackgroundColor(Color32 color) => _mainCamera.backgroundColor = color;
 }

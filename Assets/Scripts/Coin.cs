@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private float addCoinValue = 1f;
-    [SerializeField] private GameObject destroyCoinParticles;
+    [SerializeField] private float _addCoinValue = 1f;
+    [SerializeField] private GameObject _destroyCoinParticles;
+
+    private readonly string _addCoinSoundName = "AddCoin";
 
     private void Start()
     {
@@ -13,6 +15,20 @@ public class Coin : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.PlayerEvents.OnGameObjectTouchedCallback -= IsTouched;
+    }
+
+    public void AddCoin()
+    {
+        SoundManager.instance.PlaySound(_addCoinSoundName);
+        EventManager.PlayerEvents.CallOnCollectCoin(_addCoinValue);
+        ObjectPoolManager.instance.SpawnGameObject(_destroyCoinParticles, transform.position, transform.rotation);
+        ObjectPoolManager.instance.DespawnGameObject(this.gameObject);
+    }
+
+    public void DestroyCoin()
+    {
+        ObjectPoolManager.instance.SpawnGameObject(_destroyCoinParticles, transform.position, transform.rotation);
+        ObjectPoolManager.instance.DespawnGameObject(this.gameObject);
     }
 
     private void IsTouched(GameObject touchedObject, Touch touch, string coinTag)
@@ -26,19 +42,5 @@ public class Coin : MonoBehaviour
         {
             AddCoin();
         }
-    }
-
-    public void DestroyCoin()
-    {
-        ObjectPoolManager.instance.SpawnGameObject(destroyCoinParticles, transform.position, transform.rotation);
-        ObjectPoolManager.instance.DespawnGameObject(gameObject);
-    }
-
-    public void AddCoin()
-    {
-        EventManager.PlayerEvents.CallOnCollectCoin(addCoinValue);
-        SoundManager.instance.PlaySound("AddCoin");
-        ObjectPoolManager.instance.SpawnGameObject(destroyCoinParticles, transform.position, transform.rotation);
-        ObjectPoolManager.instance.DespawnGameObject(gameObject);
     }
 }

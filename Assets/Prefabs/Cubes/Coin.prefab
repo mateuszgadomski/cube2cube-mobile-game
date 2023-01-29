@@ -98,9 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06daf04852dad414eb18ce88db2ad7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addCoinValue: 1
-  startDestroyTime: 2
-  destroyCoinParticles: {fileID: 2425956804193462339, guid: b16e6f25341f07a43b68dd8bcc350bdc,
+  _addCoinValue: 1
+  _destroyCoinParticles: {fileID: 2425956804193462339, guid: b16e6f25341f07a43b68dd8bcc350bdc,
     type: 3}
 --- !u!65 &-7988453789547422281
 BoxCollider:

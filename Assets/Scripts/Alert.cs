@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Alert : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI alertText;
+    [SerializeField] private TextMeshProUGUI _alertText;
 
     private void Start()
     {
@@ -17,11 +15,11 @@ public class Alert : MonoBehaviour
         EventManager.LevelEvents.OnlevelChangeDarkColorsCallback -= ChangeAlertTextColor;
     }
 
+    public void ChangeAlertTextColor(Color32 color) => _alertText.color = color;
+
     public void AlertDestroy()
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject);
         transform.parent.gameObject.SetActive(false);
     }
-
-    public void ChangeAlertTextColor(Color32 color) => alertText.color = color;
 }
